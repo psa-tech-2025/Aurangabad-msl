@@ -1,0 +1,238 @@
+
+
+<div class="container my-5">
+    <div class="accordion" id="infoAccordion">
+  
+      <!-- Services -->
+    <div class="accordion-item">
+  <h2 class="accordion-header" id="headingServices">
+    <button class="accordion-button collapsed text-danger fw-bold bg-light" 
+            type="button" data-bs-toggle="collapse" 
+            data-bs-target="#collapseServices" aria-expanded="false" 
+            aria-controls="collapseServices">
+      {{ 'services.title' | translate }}
+    </button>
+  </h2>
+  <div id="collapseServices" class="accordion-collapse collapse" 
+       aria-labelledby="headingServices" data-bs-parent="#infoAccordion">
+    <div class="accordion-body">
+      <div class="container my-4">
+        
+        <h4 class="fw-bold text-danger border-bottom pb-2 mb-3">
+          {{ 'services.title' | translate }}
+        </h4>
+        <p>{{ 'services.intro' | translate }}</p>
+
+        <h5 class="fw-bold text-primary mt-4 mb-3">
+          {{ 'services.majorTitle' | translate }}
+        </h5>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
+              <tr>
+                <th style="width: 20%;">{{ 'services.table.headerService' | translate }}</th>
+                <th>{{ 'services.table.headerDescription' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ 'services.table.village.title' | translate }}</td>
+                <td>{{ 'services.table.village.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'services.table.agriculture.title' | translate }}</td>
+                <td>{{ 'services.table.agriculture.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'services.table.healthcare.title' | translate }}</td>
+                <td>{{ 'services.table.healthcare.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'services.table.education.title' | translate }}</td>
+                <td>{{ 'services.table.education.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'services.table.womenChild.title' | translate }}</td>
+                <td>{{ 'services.table.womenChild.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'services.table.socialJustice.title' | translate }}</td>
+                <td>{{ 'services.table.socialJustice.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'services.table.disaster.title' | translate }}</td>
+                <td>{{ 'services.table.disaster.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'services.table.other.title' | translate }}</td>
+                <td>
+                  <ul class="mb-0">
+                    <li *ngFor="let item of ('services.table.other.points' | translate)">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5 class="fw-bold text-danger mt-4 mb-3">
+          {{ 'services.howTitle' | translate }}
+        </h5>
+        <ul>
+          <li *ngFor="let point of ('services.howPoints' | translate)">
+            {{ point }}
+          </li>
+        </ul>
+
+        <p class="fw-bold text-success">
+          {{ 'services.footer' | translate }}
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+      <!-- Applications -->
+      <div class="accordion-item">
+  <h2 class="accordion-header" id="headingApplications">
+    <button class="accordion-button collapsed text-danger fw-bold bg-light" type="button"
+      data-bs-toggle="collapse" data-bs-target="#collapseApplications" aria-expanded="false"
+      aria-controls="collapseApplications">
+      {{ 'applications.title' | translate }}
+    </button>
+  </h2>
+  <div id="collapseApplications" class="accordion-collapse collapse" aria-labelledby="headingApplications"
+    data-bs-parent="#infoAccordion">
+    <div class="accordion-body">
+      <div class="p-4 bg-light">
+        <div class="container">
+          <h3 class="text-danger fw-bold">{{ 'applications.title' | translate }}</h3>
+          <p>{{ 'applications.intro' | translate }}</p>
+
+          <h4 class="text-danger fw-bold mt-4">{{ 'applications.majorTitle' | translate }}</h4>
+          <table class="table table-bordered mt-3">
+            <thead class="table-light">
+              <tr>
+                <th>{{ 'applications.table.heading1' | translate }}</th>
+                <th>{{ 'applications.table.heading2' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.housing.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.housing.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.birthDeath.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.birthDeath.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.pension.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.pension.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.disability.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.disability.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.employment.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.employment.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.agriculture.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.agriculture.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.sanitation.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.sanitation.desc' | translate }}</td>
+              </tr>
+              <tr>
+                <td><strong>{{ 'applications.table.rows.other.title' | translate }}</strong></td>
+                <td>{{ 'applications.table.rows.other.desc' | translate }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 class="text-danger fw-bold mt-4">{{ 'applications.howToApply' | translate }}</h4>
+          <ul>
+            <li *ngFor="let step of ('applications.steps' | translate)">
+              {{ step }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+      <!-- Complaint Redressal -->
+  <div class="accordion-item">
+  <h2 class="accordion-header" id="headingComplaint">
+    <button class="accordion-button collapsed text-danger fw-bold bg-light" type="button"
+      data-bs-toggle="collapse" data-bs-target="#collapseComplaint" aria-expanded="false"
+      aria-controls="collapseComplaint">
+      {{ 'complaint.title' | translate }}
+    </button>
+  </h2>
+  <div id="collapseComplaint" class="accordion-collapse collapse" aria-labelledby="headingComplaint"
+    data-bs-parent="#infoAccordion">
+    <div class="accordion-body">
+      <div class="p-4 bg-light">
+        <div class="container">
+
+          <!-- Title -->
+          <h3 class="text-danger fw-bold">{{ 'complaint.heading' | translate }}</h3>
+          <p>{{ 'complaint.description' | translate }}</p>
+
+          <!-- Section 1 -->
+          <h4 class="text-danger fw-bold mt-4">{{ 'complaint.register' | translate }}</h4>
+          <ul>
+            <li>{{ 'complaint.registerList.visit' | translate }}</li>
+            <li>{{ 'complaint.registerList.written' | translate }}</li>
+            <li>{{ 'complaint.registerList.online' | translate }}</li>
+            <li>{{ 'complaint.registerList.phone' | translate }}</li>
+          </ul>
+
+          <!-- Section 2 -->
+          <h4 class="text-danger fw-bold mt-4">{{ 'complaint.info' | translate }}</h4>
+          <ul>
+            <li>{{ 'complaint.infoList.name' | translate }}</li>
+            <li>{{ 'complaint.infoList.subject' | translate }}</li>
+            <li>{{ 'complaint.infoList.details' | translate }}</li>
+            <li>{{ 'complaint.infoList.docs' | translate }}</li>
+          </ul>
+
+          <!-- Section 3 -->
+          <h4 class="text-danger fw-bold mt-4">{{ 'complaint.process' | translate }}</h4>
+          <ul>
+            <li>{{ 'complaint.processList.register' | translate }}</li>
+            <li>{{ 'complaint.processList.investigation' | translate }}</li>
+            <li>{{ 'complaint.processList.decision' | translate }}</li>
+            <li>{{ 'complaint.processList.inform' | translate }}</li>
+          </ul>
+
+          <!-- Section 4 -->
+          <h4 class="text-danger fw-bold mt-4">{{ 'complaint.instructions' | translate }}</h4>
+          <ul>
+            <li>{{ 'complaint.instructionsList.truth' | translate }}</li>
+            <li>{{ 'complaint.instructionsList.docs' | translate }}</li>
+            <li>{{ 'complaint.instructionsList.cooperate' | translate }}</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    </div>
+  </div>
+  

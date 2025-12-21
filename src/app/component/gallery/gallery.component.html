@@ -1,0 +1,16 @@
+
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="color: #800000;">ग्रामपंचायत वाशी गॅलरी</h2>
+    <hr style="border-top: 2px solid #800000; width: 90%; margin: 0 auto 30px auto;">
+  
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-md-4" *ngFor="let image of images">
+        <div class="card shadow-sm h-100">
+          <img [src]="image.url" class="card-img-top" alt="Gallery Image">
+          <div class="card-body">
+            <p class="card-text text-center">{{ image.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

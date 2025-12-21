@@ -1,0 +1,24 @@
+
+<div class="p-5 bg-light">
+  <div class="container">
+    <h2>{{ 'reports.title' | translate }}</h2>
+
+    <table class="table table-bordered mt-4">
+      <thead class="table-light">
+        <tr>
+          <th>{{ 'reports.table.header.title' | translate }}</th>
+          <th>{{ 'reports.table.header.description' | translate }}</th>
+          <th>{{ 'reports.table.header.download' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of ('reports.table.rows' | translate)">
+          <td>{{ row.title }}</td>
+          <td>{{ row.description }}</td>
+          <td><a href="#" class="text-primary fw-bold">{{ row.link }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

@@ -1,0 +1,32 @@
+<div class="container mt-5 mb-5">
+  <h5 class="text-center text-danger fw-bold border-bottom pb-2" style="width: fit-content; margin: auto;">
+    {{ 'about.title' | translate }}
+  </h5>
+
+  <div class="mt-4">
+    <p>{{ 'about.intro' | translate }}</p>
+
+    <h6 class="text-danger fw-bold mt-4">{{ 'about.historyTitle' | translate }}</h6>
+    <p>{{ 'about.historyDesc' | translate }}</p>
+
+    <h6 class="text-danger fw-bold mt-4">{{ 'about.objectivesTitle' | translate }}</h6>
+    <ul>
+      <li *ngFor="let item of ('about.objectivesList' | translate)">{{ item }}</li>
+    </ul>
+
+    <h6 class="text-danger fw-bold mt-4">{{ 'about.servicesTitle' | translate }}</h6>
+    <p>{{ 'about.servicesIntro' | translate }}</p>
+    <ul>
+      <li *ngFor="let service of ('about.servicesList' | translate)">{{ service }}</li>
+    </ul>
+
+    <h6 class="text-danger fw-bold mt-4">{{ 'about.contactTitle' | translate }}</h6>
+    <div class="bg-light p-3 rounded shadow-sm mt-2 text-center">
+      <p class="mb-1">{{ 'about.contactAddress' | translate }}</p>
+      <p class="mb-1">{{ 'about.contactPhone' | translate }}</p>
+      <p>{{ 'about.contactEmail' | translate }}</p>
+    </div>
+  </div>
+</div>
+
+

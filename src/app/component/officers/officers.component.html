@@ -1,0 +1,27 @@
+
+<div class="container my-4">
+  <h4 class="text-center fw-bold text-danger border-bottom pb-2 mb-4">
+    {{ 'officers.title' | translate }}
+  </h4>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>{{ 'officers.srNo' | translate }}</th>
+          <th>{{ 'officers.name' | translate }}</th>
+          <th>{{ 'officers.designation' | translate }}</th>
+          <th>{{ 'officers.phone' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let officer of officers">
+          <td>{{ officer.id }}</td>
+          <td>{{ officer.name }}</td>
+          <td>{{ officer.post }}</td>
+          <td>{{ officer.phone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

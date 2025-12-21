@@ -1,0 +1,364 @@
+{
+    "TITLE": {
+    "PANCHAYAT": "Grampanchayat "
+  },
+  "NAV": {
+    "HOME": "Home",
+    "GALLERY": "Gallery",
+    "ABOUT_CITIZENS": "About Citizens",
+    "OFFICE_BEARER": "Office Bearer",
+    "SCHEMES": "Government Schemes",
+    "ABOUT_US": "About Us",
+    "OFFICERS": "Officers",
+    "REPORTS": "Reports",
+    "LOGIN": "Panchayat Login"
+  },
+   "CAROUSEL": {
+    "SLIDE1": {
+      "TITLE": "First slide label",
+      "DESC": "Some representative placeholder content for the first slide."
+    },
+    "SLIDE2": {
+      "TITLE": "Second slide label",
+      "DESC": "Some representative placeholder content for the second slide."
+    },
+    "SLIDE3": {
+      "TITLE": "Third slide label",
+      "DESC": "Some representative placeholder content for the third slide."
+    }
+  },
+    "chiefOfficer": {
+    "title": "Chief Gram Panchayat Officer",
+    "officers": [
+      {
+        "name": "Mr. sa  shinde",
+        "post": "Chief Officer",
+        "image": "assets/adhikari/dummy-image.webp"
+      },
+      {
+        "name": "Mrs. Sa Pawar",
+        "post": "Assistant Officer",
+        "image": "assets/adhikari/dummy-image.webp"
+      },
+      {
+        "name": "Mr. sa pawar",
+        "post": "Clerk",
+        "image": "assets/adhikari/dummy-image.webp"
+      }
+    ]
+  },
+  "members": {
+  "title": "Members",
+  "list": [
+    {
+      "name": "Mr. Sunil Patil",
+      "post": "Member",
+      "image": "assets/adhikari/dummy-image.webp"
+    },
+    {
+      "name": "Mrs. Kavita Deshmukh",
+      "post": "Member",
+      "image": "assets/adhikari/dummy-image.webp"
+    }
+  ]
+},
+  "geoInfo": {
+    "title": "Geographical and Population Information",
+    "villages": { "label": "Total Rural Villages", "value": "96" },
+    "primarySchools": { "label": "Z.P. Primary Schools", "value": "1" },
+    "secondarySchools": { "label": "Z.P. Secondary Schools", "value": "1" },
+    "gramPanchayats": { "label": "Total Gram Panchayats", "value": "66" },
+    "municipalCouncil": { "label": "Villages Included in Municipal Council", "value": "1" },
+    "totalArea": { "label": "Total Area (Hectares)", "value": "78428" },
+    "cultivableArea": { "label": "Cultivable Area (Hectares)", "value": "58288" },
+    "primaryHealth": { "label": "Primary Health Centers", "value": "5" },
+    "hospitals": { "label": "Sub-District Hospitals", "value": "28" },
+    "veterinary": { "label": "Veterinary Clinics", "value": "10" },
+    "population": { "label": "Total Population", "value": "219032" },
+    "male": { "label": "Male", "value": "110000" },
+    "female": { "label": "Female", "value": "109032" },
+    "anganwadi": { "label": "Anganwadi Center", "value": "2" }
+  },
+  "reports": {
+    "title": "Reports",
+    "table": {
+      "header": {
+        "title": "Report Title",
+        "description": "Description",
+        "download": "Download Link"
+      },
+      "rows": [
+        {
+          "title": "List of Notified Services under Lokseva Office",
+          "description": "List of notified services under Lokseva Office – Zilla Parishad, Panchayat Samiti, Gram Panchayat level and Appellate Officer",
+          "link": "Download Link"
+        },
+        {
+          "title": "Pradhan Mantri Awas Yojana – Rural (Phase 2)",
+          "description": "Pradhan Mantri Awas Yojana – Rural (Phase 2), Awaas+ 2024 Survey, Awaas+ 2024 Mobile App, Survey (Gram Panchayat Officer) Progress.",
+          "link": "Download Link"
+        },
+        {
+          "title": "List of Villages in Taluka",
+          "description": "Taluka-wise village list with map",
+          "link": "Download Link"
+        }
+      ]
+    }
+  },
+    "login": {
+    "title": "Panchayat Login",
+    "subtitle": "Admin Login",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "button": "Login",
+    "error": "Invalid credentials"
+  },
+  "about": {
+    "title": "About Us",
+    "intro": "Buldhana Panchayat Samiti is a local self-government institution located in Buldhana Taluka, Buldhana District, Maharashtra. We are committed to improving the quality of life of rural citizens through rural development, social welfare, and local governance.",
+    "historyTitle": "History",
+    "historyDesc": "Buldhana Panchayat Samiti was established in 1962 under the Panchayati Raj system in Maharashtra. Since then, we have consistently contributed to the development of infrastructure, education, health, and agriculture in rural areas. Our efforts have enabled many villages in Buldhana Taluka to reach new heights of development.",
+    "objectivesTitle": "Objectives",
+    "objectivesList": [
+      "Develop infrastructure in rural areas, such as roads, water supply, and sanitation.",
+      "Improve the quality of life through education and healthcare services.",
+      "Increase farmers' income by promoting agriculture and allied activities.",
+      "Implement special schemes for the empowerment of women and girls.",
+      "Ensure the benefits of government schemes reach villagers directly."
+    ],
+    "servicesTitle": "Services",
+    "servicesIntro": "Buldhana Panchayat Samiti provides the following services:",
+    "servicesList": [
+      "Certificates: Birth, death, and residence certificates.",
+      "Social Security: Old-age pensions, widow pensions, and disability welfare schemes.",
+      "Healthcare: Primary health centers and vaccination campaigns.",
+      "Education: Management of Z.P. schools and scholarship schemes.",
+      "Rural Development: Employment generation and infrastructure projects under MGNREGA."
+    ],
+    "contactTitle": "Contact Us",
+    "contactAddress": "Buldhana Panchayat Samiti, Buldhana, Buldhana - 443001, Maharashtra",
+    "contactPhone": "Phone: 07262-297384",
+    "contactEmail": "Email: eopbuldana@gmail.com"
+  },
+  
+  "schemes": {
+    "title": "Government Schemes",
+    "tableHeaders": {
+      "name": "Scheme Name",
+      "desc": "Description",
+      "link": "Official Portal Link"
+    },
+    "list": [
+      {
+        "name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+        "desc": "A national mission to provide banking services to all households, including opening bank accounts, debit cards, insurance, and overdraft facilities.",
+        "link": "PMJDY Portal"
+      },
+      {
+        "name": "Pradhan Mantri Awas Yojana (PMAY)",
+        "desc": "Provides financial assistance to build affordable houses for the poor, especially for EWS and LIG categories in rural and urban areas.",
+        "link": "PMAY Portal"
+      },
+      {
+        "name": "Ayushman Bharat Yojana (PM-JAY)",
+        "desc": "Offers financial protection for secondary and tertiary healthcare services, providing up to 5 lakh rupees per family for free treatment.",
+        "link": "PM-JAY Portal"
+      },
+      {
+        "name": "Pradhan Mantri Matsya Sampada Yojana (PMMSY)",
+        "desc": "A scheme for the sustainable development of the fisheries sector, focusing on fish production, infrastructure, and employment generation.",
+        "link": "PMMSY Portal"
+      },
+      {
+        "name": "Swachh Bharat Abhiyan",
+        "desc": "A national campaign to promote cleanliness and sanitation, including ending open defecation and improving waste management.",
+        "link": "Swachh Bharat Portal"
+      },
+      {
+        "name": "PM Surya Ghar Muft Bijli Yojana",
+        "desc": "Provides 300 units of free electricity per month to 1 crore households through rooftop solar panels, promoting savings and green energy.",
+        "link": "PM Surya Ghar Portal"
+      },
+      {
+        "name": "Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGA)",
+        "desc": "Guarantees at least 100 days of wage employment per year to rural households, improving their livelihoods.",
+        "link": "MGNREGA Portal"
+      },
+      {
+        "name": "Beti Bachao Beti Padhao",
+        "desc": "A scheme to promote the education and protection of girls, reducing gender discrimination and empowering girls.",
+        "link": "BBBP Portal"
+      },
+      {
+        "name": "Pradhan Mantri Garib Kalyan Anna Yojana (PMGKAY)",
+        "desc": "Ensures food security for the poor by providing free food grains monthly, initially launched during the COVID-19 pandemic.",
+        "link": "PMGKAY Portal"
+      },
+      {
+        "name": "Maharashtra State Rural Livelihoods Mission (MSRLM)",
+        "desc": "Focuses on poverty alleviation and livelihood improvement in rural Maharashtra through self-help groups.",
+        "link": "MSRLM Portal"
+      }
+    ]
+  },
+  "officers": {
+    "title": "Government Employees / Officers at Village Level",
+    "srNo": "Sr. No.",
+    "name": "Name",
+    "designation": "Designation",
+    "phone": "Phone"
+  },
+  "services": {
+    "title": "Grampanchayat Services for Citizens",
+    "intro": "The Grampanchayat provides numerous services for the development of citizens and resolving their issues. These services greatly benefit the people in rural areas.",
+    "majorTitle": "Major Services Provided by Grampanchayat",
+    "table": {
+      "headerService": "Service",
+      "headerDescription": "Description",
+      "village": {
+        "title": "Village Development Schemes",
+        "desc": "The Grampanchayat implements various schemes for rural development, including roads, water supply, sanitation, education, and healthcare."
+      },
+      "agriculture": {
+        "title": "Agriculture and Animal Husbandry",
+        "desc": "Guiding farmers, implementing agricultural schemes, and running animal husbandry and dairy programs."
+      },
+      "healthcare": {
+        "title": "Healthcare Services",
+        "desc": "Organizing health camps, conducting vaccinations, providing health education, and implementing healthcare schemes."
+      },
+      "education": {
+        "title": "Education",
+        "desc": "Arranging primary & secondary schools, training teachers, implementing schemes, and running scholarships."
+      },
+      "womenChild": {
+        "title": "Women and Child Welfare",
+        "desc": "Forming savings groups, training women for self-employment, running Anganwadis, and implementing welfare schemes."
+      },
+      "socialJustice": {
+        "title": "Social Justice",
+        "desc": "Implementing schemes for SC, ST, and OBC communities, ensuring justice, and resolving their issues."
+      },
+      "disaster": {
+        "title": "Disaster Management",
+        "desc": "Helping citizens during disasters, relocating them safely, and rehabilitating them after disasters."
+      },
+      "other": {
+        "title": "Other Services",
+        "points": [
+          "Issuing birth and death certificates",
+          "Implementing housing schemes",
+          "Running schemes for the elderly",
+          "Running schemes for the disabled"
+        ]
+      }
+    },
+    "howTitle": "How Can Citizens Avail Grampanchayat Services?",
+    "howPoints": [
+      "Visit the Grampanchayat office in their village and contact the officials.",
+      "Use the information on the Grampanchayat website.",
+      "Participate in programs organized by the Grampanchayat."
+    ],
+    "footer": "The Grampanchayat is always ready to serve citizens."
+  },
+   "applications": {
+    "title": "Grampanchayat Applications for Citizens",
+    "intro": "The Grampanchayat provides various application processes for the convenience of citizens. Through these applications, citizens can apply for various schemes and services.",
+    "majorTitle": "Major Applications Available at Grampanchayat:",
+    "table": {
+      "heading1": "Application Title",
+      "heading2": "Description",
+      "rows": {
+        "housing": {
+          "title": "Application for Housing Scheme",
+          "desc": "This application is used to obtain financial assistance for poor and needy families to build or repair houses."
+        },
+        "birthDeath": {
+          "title": "Application for Birth and Death Certificates",
+          "desc": "This application is used to register births and deaths and obtain certificates."
+        },
+        "pension": {
+          "title": "Application for Old-Age Pension Scheme",
+          "desc": "This application is used to provide financial assistance to the elderly."
+        },
+        "disability": {
+          "title": "Application for Disability",
+          "desc": "This application is used to obtain a disability certificate for disabled individuals to avail government scheme benefits."
+        },
+        "employment": {
+          "title": "Application for Employment Guarantee Scheme",
+          "desc": "This application is used to provide employment opportunities to people in rural areas."
+        },
+        "agriculture": {
+          "title": "Application for Agricultural Schemes",
+          "desc": "This application is used to avail benefits of various agricultural schemes for farmers."
+        },
+        "sanitation": {
+          "title": "Application for Sanitation Scheme",
+          "desc": "This application is used to obtain government assistance for building toilets or maintaining sanitation."
+        },
+        "other": {
+          "title": "Applications for Other Services",
+          "desc": "In addition, applications for many other services are available at the Grampanchayat."
+        }
+      }
+    },
+    "howToApply": "How to Apply?",
+    "steps": [
+      "Citizens should obtain the relevant application form from the Grampanchayat office in their village.",
+      "Fill in all the required information correctly in the application.",
+      "Attach the necessary documents with the application.",
+      "Submit the completed application to the Grampanchayat office."
+    ]
+  },
+  "complaint": {
+    "title": "Complaint Redressal",
+    "heading": "Grampanchayat Complaint Redressal for Citizens",
+    "description": "The Grampanchayat is committed to resolving citizens’ complaints. Addressing citizens’ problems and grievances to ensure justice is the duty of the Grampanchayat.",
+
+    "register": "How to Register a Complaint with Grampanchayat?",
+    "registerList": {
+      "visit": "In-Person Visit: Citizens can visit the Grampanchayat office and register their complaints with the relevant officials.",
+      "written": "Written Complaint: Citizens can submit their complaints in writing to the Grampanchayat office.",
+      "online": "Online Complaint: The facility to register complaints online is available on the Grampanchayat website.",
+      "phone": "Complaint via Phone: Citizens can register their complaints by calling the Grampanchayat helpline number."
+    },
+
+    "info": "Information Required While Registering a Complaint:",
+    "infoList": {
+      "name": "Name and address of the complainant",
+      "subject": "Subject of the complaint",
+      "details": "Detailed information about the complaint",
+      "docs": "Documents related to the complaint (if any)"
+    },
+
+    "process": "Complaint Redressal Process:",
+    "processList": {
+      "register": "After receiving the complaint, the Grampanchayat registers it.",
+      "investigation": "Relevant officials are appointed to investigate the complaint.",
+      "decision": "After the investigation is complete, an appropriate decision is made on the complaint.",
+      "inform": "The complainant is informed of the decision."
+    },
+
+    "instructions": "Instructions for Citizens:",
+    "instructionsList": {
+      "truth": "Provide accurate and truthful information while registering a complaint.",
+      "docs": "Submit all documents related to the complaint.",
+      "cooperate": "Cooperate with the Grampanchayat for the resolution of the complaint."
+    }
+  },
+  "noticeBoard": {
+    "title": "Notice Board",
+     "list":[
+      "All new notifications will appear here.",
+      "All new notifications will appear here."
+     ]
+
+  },
+  "announcements": {
+    "title": "Announcements"
+  }
+
+
+}

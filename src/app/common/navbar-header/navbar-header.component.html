@@ -1,0 +1,95 @@
+
+<!-- Top Header -->
+<div class="bg-light p-2 d-flex justify-content-between align-items-center">
+  <div class="d-flex align-items-center">
+    <img src="../assets/images/govlogo.png" alt="Emblem" height="50" class="me-2" />
+    <div>
+     <h5 class="mb-0 fw-bold">{{ 'TITLE.PANCHAYAT' | translate }}</h5>
+      <small class="text-muted"> ग्रामपंचायत </small>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <button class="btn btn-outline-primary btn-sm me-1">A+</button>
+    <button class="btn btn-outline-primary btn-sm me-1">A</button>
+    <button class="btn btn-outline-primary btn-sm me-2">A−</button>
+    <div>
+     <select (change)="switchLanguage($event)">
+    <option value="mr" selected>मराठी</option>
+    <option value="en">English</option>
+  </select>
+    </div>
+ 
+
+  </div>
+</div>
+
+<!-- Blue Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" (click)="closeNavbar()">
+            {{ 'NAV.HOME' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/gallery" (click)="closeNavbar()">
+            {{ 'NAV.GALLERY' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-citizens" (click)="closeNavbar()">
+            {{ 'NAV.ABOUT_CITIZENS' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/officers" (click)="closeNavbar()">
+            {{ 'NAV.OFFICE_BEARER' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/schemes" (click)="closeNavbar()">
+            {{ 'NAV.SCHEMES' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-us" (click)="closeNavbar()">
+            {{ 'NAV.ABOUT_US' | translate }}
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" routerLink="/officers" (click)="closeNavbar()">
+            {{ 'NAV.OFFICERS' | translate }}
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/reports" (click)="closeNavbar()">
+            {{ 'NAV.REPORTS' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="closeNavbar()">
+            {{ 'NAV.LOGIN' | translate }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+

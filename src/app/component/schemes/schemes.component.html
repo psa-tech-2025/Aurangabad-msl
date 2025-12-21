@@ -1,0 +1,25 @@
+
+<div class="container my-5">
+  <h4 class="text-center fw-bold mb-3 text-danger border-bottom pb-2">
+    {{ 'schemes.title' | translate }}
+  </h4>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">{{ 'schemes.tableHeaders.name' | translate }}</th>
+          <th scope="col">{{ 'schemes.tableHeaders.desc' | translate }}</th>
+          <th scope="col">{{ 'schemes.tableHeaders.link' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let scheme of ('schemes.list' | translate)">
+          <td>{{ scheme.name }}</td>
+          <td>{{ scheme.desc }}</td>
+          <td><a href="#" target="_blank">{{ scheme.link }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

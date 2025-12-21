@@ -1,0 +1,323 @@
+<div>
+  <div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../../assets/images/rajurghat.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ 'CAROUSEL.SLIDE1.TITLE' | translate }}</h5>
+          <p>{{ 'CAROUSEL.SLIDE1.DESC' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="../../../assets/images/newpsbuldhanaimg.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ 'CAROUSEL.SLIDE2.TITLE' | translate }}</h5>
+          <p>{{ 'CAROUSEL.SLIDE2.DESC' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="../../../assets/images/sailani.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ 'CAROUSEL.SLIDE3.TITLE' | translate }}</h5>
+          <p>{{ 'CAROUSEL.SLIDE3.DESC' | translate }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <!-- Notice Board -->
+        <div class="col-md-6">
+          <div class="card custom-card p-4">
+            <h5 class="card-title">{{ 'noticeBoard.title' | translate }}</h5>
+            <div class="card-body p-0">
+              <div *ngFor="let item of ('noticeBoard.list' | translate)">
+                <p>{{ item }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcements -->
+        <div class="col-md-6">
+          <div class="card custom-card p-4">
+            <h5 class="card-title">{{ 'announcements.title' | translate }}</h5>
+            <div class="card-body p-0">
+               <div *ngFor="let item of ('announcements.list' | translate)">
+                <p>{{ item }}</p>
+              </div>
+              <!-- <p>{{ 'announcements.line1' | translate }}</p>
+              <hr>
+              <p>{{ 'announcements.line2' | translate }}</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container py-5">
+      <h2 class="section-title">{{ 'chiefOfficer.title' | translate }}</h2>
+      <div class="row text-center justify-content-center mt-4">
+        <div class="col-md-4 mb-4 officer-card" *ngFor="let officer of ('chiefOfficer.officers' | translate)">
+          <img [src]="officer.image" [alt]="officer.name">
+          <div class="officer-name">{{ officer.name }}</div>
+          <div class="officer-title">{{ officer.post }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-5">
+      <h2 class="section-title">{{ 'members.title' | translate }}</h2>
+      <div class="row text-center justify-content-center mt-4">
+        <div class="col-md-4 mb-4 officer-card" *ngFor="let list of ('members.list' | translate)">
+          <img [src]="list.image" [alt]="list.name">
+          <div class="officer-name">{{ list.name }}</div>
+          <div class="officer-title">{{ list.post }}</div>
+        </div>
+      </div>
+    </div>
+    <!-- //////////// -->
+    <div class="container py-5">
+      <h2 class="text-center fw-bold mb-4" style="color: #a51919;">
+        {{ 'geoInfo.title' | translate }}
+      </h2>
+
+      <div class="row g-4 text-center">
+
+        <!-- 1 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-house-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.villages.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.villages.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-building fs-2"></i></div>
+            <div>{{ 'geoInfo.primarySchools.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.primarySchools.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-building fs-2"></i></div>
+            <div>{{ 'geoInfo.secondarySchools.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.secondarySchools.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-house-door-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.gramPanchayats.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.gramPanchayats.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-house-door-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.municipalCouncil.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.municipalCouncil.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-map fs-2"></i></div>
+            <div>{{ 'geoInfo.totalArea.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.totalArea.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-map fs-2"></i></div>
+            <div>{{ 'geoInfo.cultivableArea.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.cultivableArea.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-hospital fs-2"></i></div>
+            <div>{{ 'geoInfo.primaryHealth.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.primaryHealth.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-hospital-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.hospitals.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.hospitals.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-building fs-2"></i></div>
+            <div>{{ 'geoInfo.veterinary.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.veterinary.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-people-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.population.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.population.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-people-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.male.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.male.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-people-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.female.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.female.value' | translate }}</div>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="p-3 border rounded shadow-sm bg-white h-100">
+            <div class="mb-2"><i class="bi bi-people-fill fs-2"></i></div>
+            <div>{{ 'geoInfo.anganwadi.label' | translate }}</div>
+            <div class="fw-bold text-danger fs-4">{{ 'geoInfo.anganwadi.value' | translate }}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container text-center my-5">
+      <h2 class="text-danger mb-2">Search Services</h2>
+      <p class="text-muted mb-4">
+        Learn about the important services provided by the Panchayat Samiti
+      </p>
+
+      <div class="row g-4 justify-content-center">
+        <!-- Card 1 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="https://services.india.gov.in/" target="_blank" class="text-decoration-none text-dark">
+            <div class="border rounded p-3 h-100">
+              <div class="fs-1 mb-2">📄</div>
+              <p>Certificates</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="https://services.india.gov.in/" target="_blank" class="text-decoration-none text-dark">
+            <div class="border rounded p-3 h-100">
+              <div class="fs-1 mb-2">🏠</div>
+              <p>Rural HomeDevelopment</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="https://services.india.gov.in/" target="_blank" class="text-decoration-none text-dark">
+            <div class="border rounded p-3 h-100">
+              <div class="fs-1 mb-2">👥</div>
+              <p>Employment Guarantee Scheme</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="https://services.india.gov.in/" target="_blank" class="text-decoration-none text-dark">
+            <div class="border rounded p-3 h-100">
+              <div class="fs-1 mb-2">🚰</div>
+              <p>Water supply</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="https://services.india.gov.in/" target="_blank" class="text-decoration-none text-dark">
+            <div class="border rounded p-3 h-100">
+              <div class="fs-1 mb-2">🧹</div>
+              <p>Cleaning service</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="https://services.india.gov.in/" target="_blank" class="text-decoration-none text-dark">
+            <div class="border rounded p-3 h-100">
+              <div class="fs-1 mb-2">🏛️</div>
+              <p>Our Government</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="https://services.india.gov.in/" target="_blank" class="text-decoration-none text-dark">
+            <div class="border rounded p-3 h-100">
+              <div class="fs-1 mb-2">✔️</div>
+              <p>Service Rights Act</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- //////////////// -->
+    <div class="container my-5">
+      <h2 class="text-center mb-4" style="color: #800000;">ग्रामपंचायत वाशी गॅलरी</h2>
+      <hr style="border-top: 2px solid #800000; width: 90%; margin: 0 auto 30px auto;">
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let image of images" (click)="navigateToGallery()"
+          style="cursor: pointer;">
+          <div class="card shadow-sm h-100">
+            <img [src]="image.url" class="card-img-top" alt="Gallery Image">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <div>
+
+  </div>
+</div>
