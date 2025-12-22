@@ -7,29 +7,27 @@ import { AuthService } from 'src/app/services/auth.service';
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html'
 })
-export class VerifyEmailComponent implements OnInit {
+export class VerifyEmailComponent  {
 
   emailSent = false;
   verified = false;
+    message = '';
 
   constructor(
     private auth: AuthService,
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.auth.getCurrentUser().subscribe(user => {
-      if (user?.emailVerified) {
-        this.verified = true;
-        setTimeout(() => this.router.navigate(['/dashboard']), 1500);
-      }
-    });
+  async resend() {
+  this.message = '';
+  try {
+    await this.auth.resendVerification();
+    this.message = 'Verification email sent again.';
+  } catch {
+    this.message = 'Please login again to resend.';
   }
+}
 
-  async sendVerification() {
-    await this.auth.sendEmailVerification();
-    this.emailSent = true;
-  }
 
   logout() {
     this.auth.logout();

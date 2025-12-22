@@ -47,21 +47,32 @@ export class SignInComponent  {
 //     async onSubmit()
 //  {}
   async onSubmit() {
-    if (this.authForm.invalid) return;
+  if (this.authForm.invalid) return;
 
-    const { name, mobile, email, password } = this.authForm.value;
+  const { name, mobile, email, password } = this.authForm.value;
 
-    try {
-      if (this.isRegister) {
-        await this.auth.register(name!, email!, mobile!, password!);
-      } else {
-        await this.auth.login(email!, password!);
-      }
+  try {
+    if (this.isRegister) {
+      await this.auth.register(name!, email!, mobile!, password!);
+      this.router.navigate(['/verify-email']);
+    } else {
+      await this.auth.login(email!, password!);
+      // ⏱️ store 1-hour session
+await this.auth.setSession();
 
-      this.router.navigate(['/']);
-    } catch (err: any) {
+this.router.navigate(['/']);
+    }
+  } catch (err: any) {
+    if (err.message === 'EMAIL_NOT_VERIFIED') {
+      this.router.navigate(['/verify-email']);
+    } else {
       this.error = err.message || 'Authentication failed';
     }
   }
+}
+
+
+
+
 
 }

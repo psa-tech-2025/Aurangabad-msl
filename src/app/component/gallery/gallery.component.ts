@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GpContentService } from 'src/app/services/gp-content.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-gallery',
@@ -7,27 +9,83 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalleryComponent implements OnInit {
 
-  constructor() { }
+  images: any[] = [];
+
+  // admin-only state
+  isAdmin = false;
+  selectedFile!: File;
+  description = '';
+  editId: string | null = null;
+
+  constructor(
+    private gp: GpContentService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
-  }
-    images = [
-    { url: 'assets/karykram/fallagwad-yojana-2.jpeg', description: 'फळगट योजना कार्यक्रम' },
-    { url: 'assets/karykram/independence-day.jpeg', description: 'स्वातंत्र्य दिन उत्सव' },
-    { url: 'assets/karykram/janamahiti-Adhikar.jpeg', description: 'जन माहिती अधिकार दिन' },
-    { url: 'assets/karykram/krushi-banner.jpeg', description: 'कृषी विभाग बॅनर' },
-    { url: 'assets/karykram/news-2.jpeg', description: 'समाचार कार्यक्रम २' },
-    { url: 'assets/karykram/news-3.jpeg', description: 'समाचार कार्यक्रम ३' },
-    { url: 'assets/karykram/news.jpeg', description: 'समाचार कार्यक्रम' },
-    { url: 'assets/karykram/sabha-1.jpeg', description: 'सभा कार्यक्रम १' },
-    { url: 'assets/karykram/sabha-2.jpeg', description: 'सभा कार्यक्रम २' },
-    { url: 'assets/karykram/sabha2.jpeg', description: 'सभा कार्यक्रम दुसरा' },
-    { url: 'assets/karykram/sanad.jpeg', description: 'सनद वितरण' },
-    { url: 'assets/karykram/sirji-one.jpeg', description: 'माननीय अधिकारी भेट १' },
-    { url: 'assets/karykram/sirji.jpeg', description: 'माननीय अधिकारी भेट २' },
-    { url: 'assets/karykram/suchana.jpeg', description: 'सूचना कार्यक्रम' },
-    { url: 'assets/karykram/wihir-yojana-1.jpeg', description: 'विहीर योजना' },
-  ];
-  
+      this.gp.getGallery().subscribe(data => {
+    this.images = data;
+  });
 
+  // 🔐 Check login only (NO ROLE)
+  this.auth.getAuthState().subscribe(user => {
+  this.isAdmin = !!user; // logged in = true, public = false
+});
+
+  }
+  onFileSelect(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  async save() {
+  if (!this.isAdmin) return;
+
+  // 🚫 Limit: only 10 images allowed (for ADD only)
+  if (!this.editId && this.images.length >= 10) {
+    alert('Maximum 10 images allowed in gallery.');
+    return;
+  }
+
+  let url = '';
+
+  if (this.selectedFile) {
+    url = await this.gp.uploadImage(this.selectedFile);
+  }
+
+  if (this.editId) {
+    // ✏️ UPDATE (no limit check)
+    await this.gp.updateGallery(this.editId, {
+      description: this.description,
+      ...(url && { url })
+    });
+  } else {
+    // ➕ ADD
+    await this.gp.addGallery({
+      url,
+      description: this.description
+    });
+  }
+
+  this.reset();
+}
+
+
+  edit(item: any) {
+    if (!this.isAdmin) return;
+    this.editId = item.id;
+    this.description = item.description;
+  }
+
+  delete(id: string) {
+    if (!this.isAdmin) return;
+    if (confirm('Delete this image?')) {
+      this.gp.deleteGallery(id);
+    }
+  }
+
+  reset() {
+    this.editId = null;
+    this.description = '';
+    this.selectedFile = undefined as any;
+  }
 }

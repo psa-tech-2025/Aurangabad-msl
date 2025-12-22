@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar-header',
@@ -7,14 +8,22 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./navbar-header.component.css']
 })
 export class NavbarHeaderComponent implements OnInit {
+    isLoggedIn = false;
 
-  constructor( private translate: TranslateService) { 
+
+  constructor( private translate: TranslateService,
+        private auth: AuthService
+  ) { 
    
   }
 
   ngOnInit(): void {
       const savedLang = localStorage.getItem('lang') || 'mr';
   this.translate.use(savedLang);
+      // 🔁 Watch login state
+    this.auth.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
+    });
   }
 
   switchLanguage(event: any) {
@@ -28,4 +37,7 @@ export class NavbarHeaderComponent implements OnInit {
     }
 
 }
+  async logout() {
+    await this.auth.logout();
+  }
 }

@@ -81,11 +81,18 @@
             {{ 'NAV.REPORTS' | translate }}
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/sign-in" (click)="closeNavbar()">
-            {{ 'NAV.LOGIN' | translate }}
-          </a>
-        </li>
+    <li class="nav-item" *ngIf="!isLoggedIn">
+  <a class="nav-link" routerLink="sign-in" (click)="closeNavbar()">
+    {{ 'NAV.LOGIN' | translate }}
+  </a>
+</li>
+
+<li class="nav-item" *ngIf="isLoggedIn">
+  <a class="nav-link"  routerLink="sign-in" (click)="logout(); closeNavbar()">
+    {{ 'NAV.LOGOUT' | translate }}
+  </a>
+</li>
+
       </ul>
     </div>
   </div>

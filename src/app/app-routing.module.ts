@@ -39,9 +39,9 @@ const routes: Routes = [
   {
     path:'about-us', component:AboutUsComponent
   },
-  {
-    path:'sign-up',component:RegisterComponent,
-  },
+  // {
+  //   path:'sign-up',component:RegisterComponent,
+  // },
   {
     path:'sign-in',component:SignInComponent,
   },

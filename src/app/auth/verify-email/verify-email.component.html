@@ -1,29 +1,9 @@
-<div class="container d-flex justify-content-center align-items-center" style="height:100vh">
-  <div class="card p-4 text-center shadow" style="max-width:420px">
+<h4 class="text-danger">Verify Your Email</h4>
+<p>
+  A verification link has been sent to your email.
+  Please verify before login.
+</p>
 
-    <h4 class="text-danger mb-3">Verify Your Email</h4>
-
-    <p *ngIf="!verified">
-      Please verify your email address to continue.
-    </p>
-
-    <button class="btn btn-danger w-100 mb-2"
-      (click)="sendVerification()"
-      *ngIf="!emailSent && !verified">
-      Send Verification Email
-    </button>
-
-    <div class="text-success" *ngIf="emailSent">
-      Verification email sent. Please check inbox.
-    </div>
-
-    <div class="text-success" *ngIf="verified">
-      Email verified! Redirecting...
-    </div>
-
-    <button class="btn btn-link text-danger mt-2" (click)="logout()">
-      Logout
-    </button>
-
-  </div>
-</div>
+<button class="btn btn-danger w-100" (click)="resend()">
+  Resend Verification Email
+</button>

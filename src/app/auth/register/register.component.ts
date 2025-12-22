@@ -25,19 +25,29 @@ export class RegisterComponent {
     private auth: AuthService,
     private router: Router
   ) {}
-
   async submit() {
-    if (this.form.invalid) return;
-
-    try {
-      this.loading = true;
-      const { name, email, mobile, password } = this.form.value;
-      await this.auth.register(name!, email!, mobile!, password!);
-      this.router.navigate(['/login']);
-    } catch (err: any) {
-      this.error = err.message;
-    } finally {
-      this.loading = false;
-    }
+  if (this.form.invalid) {
+    console.log('FORM INVALID', this.form.value);
+    return;
   }
+
+  console.log('REGISTER START', this.form.value);
+
+  try {
+    const { name, email, mobile, password } = this.form.value;
+
+    await this.auth.register(name!, email!, mobile!, password!);
+
+    console.log('REGISTER SUCCESS');
+
+    this.router.navigate(['/verify-email']);
+
+  } catch (err: any) {
+    console.error('REGISTER ERROR', err);
+    this.error = err.message;
+  }
+}
+
+
+
 }

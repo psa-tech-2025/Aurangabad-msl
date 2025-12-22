@@ -1,27 +1,58 @@
+<!-- 🔐 ADMIN FORM -->
+<div *ngIf="isAdmin" class="container mb-4 p-3 border rounded bg-light">
+  <h6 class="fw-bold text-danger">Add / Update Officer</h6>
 
-<div class="container my-4">
-  <h4 class="text-center fw-bold text-danger border-bottom pb-2 mb-4">
-    {{ 'officers.title' | translate }}
-  </h4>
-
-  <div class="table-responsive">
-    <table class="table table-bordered table-striped text-center align-middle">
-      <thead class="table-light">
-        <tr>
-          <th>{{ 'officers.srNo' | translate }}</th>
-          <th>{{ 'officers.name' | translate }}</th>
-          <th>{{ 'officers.designation' | translate }}</th>
-          <th>{{ 'officers.phone' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let officer of officers">
-          <td>{{ officer.id }}</td>
-          <td>{{ officer.name }}</td>
-          <td>{{ officer.post }}</td>
-          <td>{{ officer.phone }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row g-2">
+    <div class="col-md-4">
+      <input class="form-control" placeholder="Name"
+        [(ngModel)]="form.name">
+    </div>
+    <div class="col-md-4">
+      <input class="form-control" placeholder="Designation"
+        [(ngModel)]="form.post">
+    </div>
+    <div class="col-md-4">
+      <input class="form-control" placeholder="Phone"
+        [(ngModel)]="form.phone">
+    </div>
   </div>
+
+  <button class="btn btn-danger mt-2" (click)="save()">
+    {{ form.id ? 'Update' : 'Add' }}
+  </button>
 </div>
+
+
+
+
+<thead class="table-light">
+  <tr>
+    <th>Sr No</th>
+    <th>Name</th>
+    <th>Designation</th>
+    <th>Phone</th>
+    <th *ngIf="isAdmin">Action</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let officer of officers">
+    <td data-label="Sr No">{{ officer.idDisplay }}</td>
+    <td data-label="Name">{{ officer.name }}</td>
+    <td data-label="Designation">{{ officer.post }}</td>
+    <td data-label="Phone">{{ officer.phone }}</td>
+
+    <td *ngIf="isAdmin" data-label="Action">
+      <button class="btn btn-sm btn-warning me-1"
+              (click)="edit(officer)">
+        Edit
+      </button>
+      <button class="btn btn-sm btn-danger"
+              (click)="delete(officer.id)">
+        Delete
+      </button>
+    </td>
+  </tr>
+</tbody>
+
+
+

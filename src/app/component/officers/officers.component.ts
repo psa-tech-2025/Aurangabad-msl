@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GpContentService } from 'src/app/services/gp-content.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-officers',
@@ -7,32 +9,77 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OFFICERSComponent implements OnInit {
 
-  constructor() { }
-   officers = [
-    { id: 1, name: 'श्री. श्रीकृष्ण कुळकर्णी', post: 'तहसीलदार अध्यक्ष', phone: '96890 59392' },
-    { id: 2, name: 'श्रीमती ममता दखनी', post: 'महसूल अधिकारी (स्व.)', phone: '98609 61717' },
-    { id: 3, name: 'श्रीमती सोनाली शिराळे', post: 'महसूल अधिकारी (अंती)', phone: '90114 03506' },
-    { id: 4, name: 'श्री. मारोती चावर', post: 'पोलीस पाटील (स्व.)', phone: '90113 57871' },
-    { id: 5, name: 'श्री. गणेश बेलोकर', post: 'पोलीस पाटील (अंती)', phone: '90112 77880' },
-    { id: 6, name: 'श्रीमती रिता बोईटे', post: 'कृषी सहायक', phone: '94048 67530' },
-    { id: 7, name: 'श्री. विनय पाटील', post: 'मुख्याध्यापक (स्व.)', phone: '98500 62952' },
-    { id: 8, name: 'श्री. सुनील सरकरे', post: 'मुख्याध्यापक (अंती)', phone: '99228 64500' },
-    { id: 9, name: 'श्री. पुष्कर राजेश पळसठे', post: 'प्राचार्य (विवेकानंद विद्यालय)', phone: '-' },
-    { id: 10, name: 'श्रीमती स्वाती वाघ', post: 'समुदाय आरोग्य अधिकारी', phone: '90227 57134' },
-    { id: 11, name: 'श्रीमती गीता गिरी', post: 'आरोग्य सेविका', phone: '75885 65598' },
-    { id: 12, name: 'श्रीमती पुनम उस्तेढे', post: 'आरोग्य सेविका', phone: '94048 67530' },
-    { id: 13, name: 'श्री. स्वप्नील ढोकले', post: 'आरोग्य सेवक', phone: '90494 22585' },
-    { id: 14, name: 'श्री. सुभम पचोरी', post: 'आरोग्य सेवक', phone: '93542 30443' },
-    { id: 15, name: 'श्रीमती अर्चना लव्हले', post: 'आंगणवाडी सेविका', phone: '99225 17343' },
-    { id: 16, name: 'श्रीमती अनीता लव्हले', post: 'आंगणवाडी सेविका', phone: '99220 47353' },
-    { id: 17, name: 'श्रीमती उषा बेलोकर', post: 'आंगणवाडी सेविका', phone: '70303 05323' },
-    { id: 18, name: 'श्रीमती अर्चना अंबोरे', post: 'आंगणवाडी सेविका', phone: '96574 34528' },
-    { id: 19, name: 'श्रीमती रेखा काकडे', post: 'महसूल सेवक', phone: '98604 80199' },
-    { id: 20, name: 'श्री. प्रवीन ढोक', post: 'वास्तू सेवक (स्व.)', phone: '87886 90132' },
-    { id: 21, name: 'सागर कुरुंदे', post: 'वास्तू सेवक (अंती)', phone: '95118 70045' },
-    { id: 22, name: 'श्री. अंबादास गिरी', post: 'तमाशा सेवक', phone: '96738 63847' }
-  ];
+  officers: any[] = [];
+
+  // 🔐 login-only controls
+  isAdmin = false;
+
+  // form model
+  form = {
+    id: null as string | null,
+    name: '',
+    post: '',
+    phone: ''
+  };
+
+  constructor(
+    private gp: GpContentService,
+    private auth: AuthService
+  ) {}
+
   ngOnInit(): void {
+
+    // 📖 Public read
+    this.gp.getOfficers().subscribe(data => {
+      this.officers = data.map((o, i) => ({
+        ...o,
+        idDisplay: i + 1   // for Sr No column
+      }));
+    });
+
+    // 🔐 Logged-in check only
+    this.auth.getAuthState().subscribe(user => {
+      this.isAdmin = !!user;
+    });
   }
 
+  save() {
+    if (!this.isAdmin) return;
+
+    const payload = {
+      name: this.form.name,
+      post: this.form.post,
+      phone: this.form.phone
+    };
+
+    if (this.form.id) {
+      this.gp.updateOfficer(this.form.id, payload);
+    } else {
+      this.gp.addOfficer(payload);
+    }
+
+    this.reset();
+  }
+
+  edit(officer: any) {
+    if (!this.isAdmin) return;
+
+    this.form = {
+      id: officer.id,
+      name: officer.name,
+      post: officer.post,
+      phone: officer.phone
+    };
+  }
+
+  delete(id: string) {
+    if (!this.isAdmin) return;
+    if (confirm('Delete this officer?')) {
+      this.gp.deleteOfficer(id);
+    }
+  }
+
+  reset() {
+    this.form = { id: null, name: '', post: '', phone: '' };
+  }
 }

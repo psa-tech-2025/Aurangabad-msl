@@ -1,24 +1,70 @@
+<!-- 🔐 ADMIN FORM -->
+<div *ngIf="isAdmin" class="container mb-4 p-3 border rounded bg-light">
+  <h6 class="fw-bold text-danger">Add / Update Scheme</h6>
 
+  <div class="row g-2">
+    <div class="col-md-4">
+      <input class="form-control"
+             placeholder="Scheme Name"
+             [(ngModel)]="form.name">
+    </div>
+
+    <div class="col-md-4">
+      <input class="form-control"
+             placeholder="Description"
+             [(ngModel)]="form.desc">
+    </div>
+
+    <div class="col-md-4">
+      <input class="form-control"
+             placeholder="Link"
+             [(ngModel)]="form.link">
+    </div>
+  </div>
+
+  <button class="btn btn-danger mt-2" (click)="save()">
+    {{ form.id ? 'Update' : 'Add' }}
+  </button>
+</div>
 <div class="container my-5">
   <h4 class="text-center fw-bold mb-3 text-danger border-bottom pb-2">
     {{ 'schemes.title' | translate }}
   </h4>
+
   <div class="table-responsive">
     <table class="table table-bordered table-striped align-middle">
+
       <thead class="table-light">
         <tr>
-          <th scope="col">{{ 'schemes.tableHeaders.name' | translate }}</th>
-          <th scope="col">{{ 'schemes.tableHeaders.desc' | translate }}</th>
-          <th scope="col">{{ 'schemes.tableHeaders.link' | translate }}</th>
+          <th>{{ 'schemes.tableHeaders.name' | translate }}</th>
+          <th>{{ 'schemes.tableHeaders.desc' | translate }}</th>
+          <th>{{ 'schemes.tableHeaders.link' | translate }}</th>
+          <th *ngIf="isAdmin">Action</th>
         </tr>
       </thead>
+
       <tbody>
-        <tr *ngFor="let scheme of ('schemes.list' | translate)">
+        <tr *ngFor="let scheme of schemes">
           <td>{{ scheme.name }}</td>
           <td>{{ scheme.desc }}</td>
-          <td><a href="#" target="_blank">{{ scheme.link }}</a></td>
+          <td>
+            <a [href]="scheme.link" target="_blank">{{ scheme.link }}</a>
+          </td>
+
+          <!-- 🔐 ADMIN ACTIONS -->
+          <td *ngIf="isAdmin">
+            <button class="btn btn-sm btn-warning me-1"
+                    (click)="edit(scheme)">
+              Edit
+            </button>
+            <button class="btn btn-sm btn-danger"
+                    (click)="delete(scheme.id)">
+              Delete
+            </button>
+          </td>
         </tr>
       </tbody>
+
     </table>
   </div>
 </div>
