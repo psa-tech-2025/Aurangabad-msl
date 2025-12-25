@@ -75,9 +75,9 @@
     "hospitals": { "label": "Sub-District Hospitals", "value": "28" },
     "veterinary": { "label": "Veterinary Clinics", "value": "10" },
     "population": { "label": "Total Population", "value": "3279" },
-    "male": { "label": "Male", "value": "110000" },
-    "female": { "label": "Female", "value": "109032" },
-    "anganwadi": { "label": "Anganwadi Center", "value": "1" }
+    "male": { "label": "Male", "value": "1690" },
+    "female": { "label": "Female", "value": "1589" },
+    "anganwadi": { "label": "Anganwadi Center", "value": "4" }
   },
   "reports": {
     "title": "Reports",

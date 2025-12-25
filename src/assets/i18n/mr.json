@@ -119,9 +119,9 @@
     "hospitals": { "label": "उपजिल्हा रुग्णालये", "value": "२८" },
     "veterinary": { "label": "पशुवैद्यकीय दवाखाने", "value": "१०" },
     "population": { "label": "एकूण लोकसंख्या", "value": "3279" },
-    "male": { "label": "पुरुष", "value": "११००००" },
-    "female": { "label": "स्त्रिया", "value": "१०९०३२" },
-    "anganwadi": { "label": "अंगणवाडी केंद्र", "value": "1" }
+    "male": { "label": "पुरुष", "value": "1690" },
+    "female": { "label": "स्त्रिया", "value": "1589" },
+    "anganwadi": { "label": "अंगणवाडी केंद्र", "value": "4" }
   },
   "reports": {
     "title": "अहवाल",
