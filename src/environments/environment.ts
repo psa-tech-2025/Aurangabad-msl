@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   
-  apiUrl: '/api',
-  projectId: 'gp-00',
+  apiUrl: 'http://192.168.126.130:3000/api',
+  projectId: 'gp-01',
       firebase: {
   apiKey: "AIzaSyB2IXjhzxDC42VOchg92_6H1wsiZvfa33U",
   authDomain: "fir-electionsps.firebaseapp.com",

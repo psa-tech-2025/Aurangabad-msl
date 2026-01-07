@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-    apiUrl: 'https://api.myservice.digital/api',
-      projectId: 'gp-00',
+    apiUrl: 'https://api.myservice.digital/gp-api/api',
+      projectId: 'gp-01',
 
         firebase: {
   apiKey: "AIzaSyB2IXjhzxDC42VOchg92_6H1wsiZvfa33U",
