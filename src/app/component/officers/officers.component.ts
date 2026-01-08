@@ -15,12 +15,22 @@ export class OFFICERSComponent implements OnInit {
   isAdmin = false;
 
   // form model
-  form = {
-    id: null as string | null,
-    name: '',
-    post: '',
-    phone: ''
-  };
+form = {
+  id: null as string | null,
+  name: '',
+  post: '',
+  phone: '',
+  image: '',
+  video: '',
+  pdf: '',
+  socialLinks: {
+    facebook: '',
+    instagram: '',
+    youtube: '',
+    website: ''
+  }
+};
+
 
   constructor(
     private gp: GpContentService,
@@ -50,12 +60,16 @@ this.officers = data.map((o: any, i: number) => ({
     alert('Unauthorized');
     return;
   }
+const payload = {
+  name: this.form.name,
+  post: this.form.post,
+  phone: this.form.phone,
+  image: this.form.image,
+  video: this.form.video,
+  pdf: this.form.pdf,
+  socialLinks: this.form.socialLinks
+};
 
-  const payload = {
-    name: this.form.name,
-    post: this.form.post,
-    phone: this.form.phone
-  };
 
   if (this.form.id) {
     this.gp.updateOfficer(this.form.id, payload)
@@ -69,16 +83,19 @@ this.officers = data.map((o: any, i: number) => ({
 }
 
 
-  edit(officer: any) {
-    if (!this.isAdmin) return;
+edit(officer: any) {
+  this.form = {
+    id: officer.id,
+    name: officer.name,
+    post: officer.post,
+    phone: officer.phone,
+    image: officer.image || '',
+    video: officer.video || '',
+    pdf: officer.pdf || '',
+    socialLinks: officer.socialLinks || {}
+  };
+}
 
-    this.form = {
-      id: officer.id,
-      name: officer.name,
-      post: officer.post,
-      phone: officer.phone
-    };
-  }
 
 delete(id: string) {
   if (!this.isAdmin) {
@@ -91,10 +108,25 @@ delete(id: string) {
       .then(() => this.reload());
   }
 }
+reset() {
+  this.form = {
+    id: null,
+    name: '',
+    post: '',
+    phone: '',
+    image: '',
+    video: '',
+    pdf: '',
+    socialLinks: {
+      facebook: '',
+      instagram: '',
+      youtube: '',
+      website: ''
+    }
+  };
+}
 
-  reset() {
-    this.form = { id: null, name: '', post: '', phone: '' };
-  }
+
   reload() {
   this.gp.getOfficers().subscribe(data => {
     this.officers = data.map((o: any, i: number) => ({
@@ -104,5 +136,26 @@ delete(id: string) {
     }));
   });
 }
+onImageSelect(e: any) {
+  const file = e.target.files[0];
+  if (file) {
+    this.gp.uploadImage(file).then(url => this.form.image = url);
+  }
+}
+
+onVideoSelect(e: any) {
+  const file = e.target.files[0];
+  if (file) {
+    this.gp.uploadImage(file).then(url => this.form.video = url);
+  }
+}
+
+onPdfSelect(e: any) {
+  const file = e.target.files[0];
+  if (file) {
+    this.gp.uploadImage(file).then(url => this.form.pdf = url);
+  }
+}
+
 
 }

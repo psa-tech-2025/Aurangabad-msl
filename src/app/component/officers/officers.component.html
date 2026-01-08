@@ -17,6 +17,48 @@
       <input class="form-control" placeholder="Phone"
         [(ngModel)]="form.phone">
     </div>
+    <!-- Image -->
+<div class="col-md-4">
+  <input type="file" class="form-control"
+         accept="image/*"
+         (change)="onImageSelect($event)">
+</div>
+
+<!-- Video -->
+<div class="col-md-4">
+  <input type="file" class="form-control"
+         accept="video/*"
+         (change)="onVideoSelect($event)">
+</div>
+
+<!-- PDF -->
+<div class="col-md-4">
+  <input type="file" class="form-control"
+         accept="application/pdf"
+         (change)="onPdfSelect($event)">
+</div>
+
+<!-- Social Links -->
+<div class="col-md-6 mt-2">
+  <input class="form-control" placeholder="Facebook URL"
+         [(ngModel)]="form.socialLinks.facebook">
+</div>
+
+<div class="col-md-6 mt-2">
+  <input class="form-control" placeholder="Instagram URL"
+         [(ngModel)]="form.socialLinks.instagram">
+</div>
+
+<div class="col-md-6 mt-2">
+  <input class="form-control" placeholder="YouTube URL"
+         [(ngModel)]="form.socialLinks.youtube">
+</div>
+
+<div class="col-md-6 mt-2">
+  <input class="form-control" placeholder="Website URL"
+         [(ngModel)]="form.socialLinks.website">
+</div>
+
   </div>
 
   <button class="btn btn-danger mt-2" (click)="save()">
@@ -34,17 +76,82 @@
     <th>Name</th>
     <th>Designation</th>
     <th>Phone</th>
+    <th>Photo</th>
+    <th>Video</th>
+    <th>PDF</th>
+    <th>Social</th>
     <th *ngIf="isAdmin">Action</th>
   </tr>
 </thead>
+
 <tbody>
   <tr *ngFor="let officer of officers">
-    <td data-label="Sr No">{{ officer.idDisplay }}</td>
-    <td data-label="Name">{{ officer.name }}</td>
-    <td data-label="Designation">{{ officer.post }}</td>
-    <td data-label="Phone">{{ officer.phone }}</td>
+    <td>{{ officer.idDisplay }}</td>
 
-    <td *ngIf="isAdmin" data-label="Action">
+    <td>{{ officer.name }}</td>
+
+    <td>{{ officer.post }}</td>
+
+    <td>{{ officer.phone }}</td>
+
+    <!-- 📸 PHOTO -->
+    <td>
+      <img *ngIf="officer.image"
+           [src]="officer.image"
+           width="50"
+           height="50"
+           class="rounded border">
+      <span *ngIf="!officer.image">—</span>
+    </td>
+
+    <!-- 🎥 VIDEO -->
+    <td>
+      <a *ngIf="officer.video"
+         [href]="officer.video"
+         target="_blank"
+         class="btn btn-sm btn-outline-primary">
+        🎥 View
+      </a>
+      <span *ngIf="!officer.video">—</span>
+    </td>
+
+    <!-- 📄 PDF -->
+    <td>
+      <a *ngIf="officer.pdf"
+         [href]="officer.pdf"
+         target="_blank"
+         class="btn btn-sm btn-outline-secondary">
+        📄 PDF
+      </a>
+      <span *ngIf="!officer.pdf">—</span>
+    </td>
+
+    <!-- 🌐 SOCIAL LINKS -->
+    <td>
+      <a *ngIf="officer.socialLinks?.facebook"
+         [href]="officer.socialLinks.facebook"
+         target="_blank"
+         class="me-1">FB</a>
+
+      <a *ngIf="officer.socialLinks?.instagram"
+         [href]="officer.socialLinks.instagram"
+         target="_blank"
+         class="me-1">IG</a>
+
+      <a *ngIf="officer.socialLinks?.youtube"
+         [href]="officer.socialLinks.youtube"
+         target="_blank"
+         class="me-1">YT</a>
+
+      <a *ngIf="officer.socialLinks?.website"
+         [href]="officer.socialLinks.website"
+         target="_blank">WEB</a>
+
+      <span *ngIf="!officer.socialLinks">—</span>
+    </td>
+
+    <!-- 🔐 ADMIN ACTIONS -->
+    <td *ngIf="isAdmin">
       <button class="btn btn-sm btn-warning me-1"
               (click)="edit(officer)">
         Edit
@@ -56,6 +163,7 @@
     </td>
   </tr>
 </tbody>
+
 </table>
 </div>
 
