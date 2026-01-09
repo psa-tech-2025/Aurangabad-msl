@@ -13,7 +13,7 @@ export class ProjectIdInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const projectId = 'gp-01'; // or gp-00
+    const projectId = 'SA-Electronics-01'; // or gp-00
 
     const clonedReq = req.clone({
       setHeaders: {

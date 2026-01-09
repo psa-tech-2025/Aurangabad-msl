@@ -1,20 +1,22 @@
 {
   
   "TITLE": {
-    "PANCHAYAT": "ग्रामपंचायत Paranda"
+    "PANCHAYAT": "SA Electronics"
   },
 
 
   "NAV": {
-    "HOME": "मुख्यपृष्ठ",
-    "GALLERY": "गॅलरी",
-    "ABOUT_CITIZENS": "नागरिकांविषयी",
-    "OFFICE_BEARER": "पदाधिकारी",
-    "SCHEMES": "शासकीय योजना",
-    "ABOUT_US": "आमच्याविषयी",
-    "OFFICERS": "अधिकारी",
-    "REPORTS": "अहवाल",
-    "LOGIN": "ग्रामपंचायत लॉगिन"
+
+  "HOME": "मुख्यपृष्ठ",
+  "GALLERY": "छायाचित्रे",
+  "Teams": "संघ",
+  "Services": "सेवा",
+  "Product": "उत्पादने",
+  "ABOUT_US": "आमच्याबद्दल",
+  "Contact": "संपर्क",
+  "LOGIN": "लॉगिन"
+
+
   },
   "CAROUSEL": {
     "SLIDE1": {

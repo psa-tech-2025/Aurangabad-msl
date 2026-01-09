@@ -71,7 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
-      defaultLanguage: 'mr'   // ✅ Set Marathi as default
+       // ✅ Set Marathi as default
     })
   ],
   providers: [

@@ -18,18 +18,22 @@ export class NavbarHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      const savedLang = localStorage.getItem('lang') || 'mr';
-  this.translate.use(savedLang);
-      // 🔁 Watch login state
-    this.auth.isLoggedIn$.subscribe(status => {
-      this.isLoggedIn = status;
-    });
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang) {
+    this.translate.use(savedLang);
   }
 
-  switchLanguage(event: any) {
-    const lang = event.target.value;
-    this.translate.use(lang);
-  }
+  this.auth.isLoggedIn$.subscribe(status => {
+    this.isLoggedIn = status;
+  });
+}
+
+switchLanguage(event: any) {
+  const lang = event.target.value;
+  this.translate.use(lang);
+  localStorage.setItem('lang', lang); // ✅ save selection
+}
+
     closeNavbar() {
     const navbar = document.getElementById('mainNavbar');
     if (navbar?.classList.contains('show')) {

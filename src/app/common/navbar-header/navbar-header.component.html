@@ -10,14 +10,15 @@
   </div>
 
   <div class="d-flex align-items-center">
-    <button class="btn btn-outline-primary btn-sm me-1">A+</button>
+    <!-- <button class="btn btn-outline-primary btn-sm me-1">A+</button>
     <button class="btn btn-outline-primary btn-sm me-1">A</button>
-    <button class="btn btn-outline-primary btn-sm me-2">A−</button>
+    <button class="btn btn-outline-primary btn-sm me-2">A−</button> -->
     <div>
-     <select (change)="switchLanguage($event)">
-    <option value="mr" selected>मराठी</option>
-    <option value="en">English</option>
-  </select>
+<select (change)="switchLanguage($event)">
+  <option value="en">English</option>
+  <option value="mr">मराठी</option>
+</select>
+
     </div>
  
 
@@ -58,12 +59,18 @@
         </li> -->
         <li class="nav-item">
           <a class="nav-link" routerLink="/officers" (click)="closeNavbar()">
-            {{ 'NAV.OFFICE_BEARER' | translate }}
+            {{ 'NAV.Teams' | translate }}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/schemes" (click)="closeNavbar()">
-            {{ 'NAV.SCHEMES' | translate }}
+            {{ 'NAV.Services' | translate }}
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/schemes" (click)="closeNavbar()">
+            {{ 'NAV.Product' | translate }}
           </a>
         </li>
         <li class="nav-item">
@@ -78,18 +85,18 @@
         </li> -->
         <li class="nav-item">
           <a class="nav-link" routerLink="/reports" (click)="closeNavbar()">
-            {{ 'NAV.REPORTS' | translate }}
+            {{ 'NAV.Contact' | translate }}
           </a>
         </li>
     <li class="nav-item" *ngIf="!isLoggedIn">
   <a class="nav-link" routerLink="sign-in" (click)="closeNavbar()">
-    {{ 'NAV.LOGIN' | translate }}
+    {{ 'LOGIN' | translate }}
   </a>
 </li>
 
 <li class="nav-item" *ngIf="isLoggedIn">
   <a class="nav-link"  routerLink="sign-in" (click)="logout(); closeNavbar()">
-    {{ 'NAV.LOGOUT' | translate }}
+    {{ 'LOGOUT' | translate }}
   </a>
 </li>
 

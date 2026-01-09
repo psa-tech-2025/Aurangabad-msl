@@ -1,17 +1,16 @@
 {
     "TITLE": {
-    "PANCHAYAT": "Grampanchayat  Bavi "
+    "PANCHAYAT": "SA Electronics"
   },
   "NAV": {
     "HOME": "Home",
     "GALLERY": "Gallery",
-    "ABOUT_CITIZENS": "About Citizens",
-    "OFFICE_BEARER": "Office Bearer",
-    "SCHEMES": "Government Schemes",
+    "Teams": "Team",
+    "Services": "Services",
+    "Product": "Products",
     "ABOUT_US": "About Us",
-    "OFFICERS": "Officers",
-    "REPORTS": "Reports",
-    "LOGIN": "Panchayat Login"
+    "Contact": "Contact",
+    "LOGIN": "Login"
   },
    "CAROUSEL": {
     "SLIDE1": {
