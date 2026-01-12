@@ -1,0 +1,81 @@
+<!-- COMMON OPTIONAL FIELDS -->
+<div class="row g-3 mt-2">
+
+  <!-- EXTRA TEXT -->
+  <div class="col-md-12">
+    <textarea class="form-control"
+              placeholder="Extra Text"
+              [(ngModel)]="model.extraText"></textarea>
+  </div>
+
+  <!-- IMAGE UPLOAD -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">Image</label>
+
+    <input type="file"
+           class="form-control"
+           accept="image/*"
+           (change)="onImageSelect($event)">
+
+    <div *ngIf="uploadingImage" class="text-muted small mt-1">
+      Uploading image...
+    </div>
+
+    <div *ngIf="model.image" class="mt-2">
+      <img [src]="model.image"
+           class="img-thumbnail"
+           style="max-height:120px;">
+      <button class="btn btn-sm btn-outline-danger ms-2"
+              (click)="removeImage()">
+        Remove
+      </button>
+    </div>
+  </div>
+
+  <!-- PDF UPLOAD -->
+  <div class="col-md-6">
+    <label class="form-label fw-semibold">PDF</label>
+
+    <input type="file"
+           class="form-control"
+           accept="application/pdf"
+           (change)="onPdfSelect($event)">
+
+    <div *ngIf="uploadingPdf" class="text-muted small mt-1">
+      Uploading PDF...
+    </div>
+
+    <div *ngIf="model.pdf" class="mt-2">
+      <a [href]="model.pdf" target="_blank">
+        View uploaded PDF
+      </a>
+      <button class="btn btn-sm btn-outline-danger ms-2"
+              (click)="removePdf()">
+        Remove
+      </button>
+    </div>
+  </div>
+
+  <!-- VIDEO URL -->
+  <div class="col-md-6">
+    <input class="form-control"
+           placeholder="Video URL"
+           [(ngModel)]="model.video">
+  </div>
+
+  <!-- FLAGS -->
+  <!-- <div class="col-md-3">
+    <label>
+      <input type="checkbox" [(ngModel)]="model.active">
+      Active
+    </label>
+  </div> -->
+
+  <!-- <div class="col-md-3">
+    <label>
+      <input type="checkbox" [(ngModel)]="model.featured">
+      Featured
+    </label>
+  </div> -->
+
+</div>

@@ -14,6 +14,9 @@ import { VerifyEmailComponent } from './auth/verify-email/verify-email.component
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { HomeAdminComponent } from './component/home-admin/home-admin.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProductDetailsComponent } from './component/schemes/product-details/product-details.component';
+import { ServicesComponent } from './component/services/services.component';
+import { ServiceDetailComponent } from './component/services/service-detail/service-detail.component';
 
 const routes: Routes = [
   {
@@ -31,6 +34,11 @@ const routes: Routes = [
   {
     path:'schemes', component:SCHEMESComponent
   },
+  {
+    path:'product/:id', component:ProductDetailsComponent
+  },
+  {path:'services', component:ServicesComponent},
+  {path:'service/:id', component:ServiceDetailComponent},
 
   {
     path:'reports', component: ReportsComponent

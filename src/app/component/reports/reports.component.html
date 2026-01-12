@@ -1,68 +1,58 @@
+<div class="contact-wrapper">
+  <div class="contact-card">
 
-<!-- 🔐 ADMIN FORM -->
-<div *ngIf="isAdmin" class="container mb-4 p-3 border rounded bg-light">
-  <h6 class="fw-bold text-danger">Add / Update Report</h6>
+    <!-- LEFT : COMPANY INFO -->
+    <div class="contact-info">
+      <h2>SA ELECTRONICS</h2>
+      <p class="iso">(AN ISO 9001:2015 COMPANY)</p>
 
-  <div class="row g-2">
-    <div class="col-md-4">
-      <input class="form-control"
-             placeholder="Title"
-             [(ngModel)]="form.title">
+      <div class="info-block">
+        <i class="bi bi-geo-alt"></i>
+        <p>
+          03, Sai Samarth, Narmada Park,<br>
+          Medankarwadi, Chakan,<br>
+          Pune – 410501
+        </p>
+      </div>
+
+      <div class="info-block">
+        <i class="bi bi-envelope"></i>
+        <p>
+          <a href="mailto:info@saelectronicsindia.com">info@saelectronicsindia.com</a><br>
+          <a href="mailto:sales@saelectronicsindia.com">sales@saelectronicsindia.com</a>
+        </p>
+      </div>
+
+      <div class="info-block">
+        <i class="bi bi-globe"></i>
+        <p>
+          <a href="https://www.saelectronicsindia.com" target="_blank">
+            www.saelectronicsindia.com
+          </a>
+        </p>
+      </div>
+
+      <div class="info-block">
+        <i class="bi bi-telephone"></i>
+        <p>
+          9766871928 / 9860842302 / 7447771928
+        </p>
+      </div>
+
+      <div class="info-block">
+        <i class="bi bi-file-earmark-text"></i>
+        <p>GSTIN: <strong>27CNIPD0563J2ZZ</strong></p>
+      </div>
     </div>
-    <div class="col-md-4">
-      <input class="form-control"
-             placeholder="Description"
-             [(ngModel)]="form.description">
+
+    <!-- RIGHT : MAP -->
+    <div class="contact-map">
+      <iframe
+        src="https://www.google.com/maps?q=03,%20Sai%20Samarth,%20Narmada%20Park,%20Medankarwadi,%20Chakan,%20Pune&output=embed"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
     </div>
-    <div class="col-md-4">
-      <input class="form-control"
-             placeholder="Download Link"
-             [(ngModel)]="form.link">
-    </div>
+
   </div>
-
-  <button class="btn btn-danger mt-2" (click)="save()">
-    {{ form.id ? 'Update' : 'Add' }}
-  </button>
 </div>
-
-<div class="table-responsive">
-  <table class="table">
-  <thead class="table-light">
-  <tr>
-    <th>{{ 'reports.table.header.title' | translate }}</th>
-    <th>{{ 'reports.table.header.description' | translate }}</th>
-    <th>{{ 'reports.table.header.download' | translate }}</th>
-    <th *ngIf="isAdmin">Action</th>
-  </tr>
-</thead>
-
-<tbody>
-  <tr *ngFor="let row of rows">
-    <td>{{ row.title }}</td>
-    <td>{{ row.description }}</td>
-    <td>
-      <a [href]="row.link" target="_blank"
-         class="text-primary fw-bold">
-        Download
-      </a>
-    </td>
-
-    <!-- 🔐 ADMIN ACTIONS -->
-    <td *ngIf="isAdmin">
-      <button class="btn btn-sm btn-warning me-1"
-              (click)="edit(row)">
-        Edit
-      </button>
-
-      <button class="btn btn-sm btn-danger"
-        (click)="delete(row._id)">
-  Delete
-</button>
-
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
-

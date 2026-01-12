@@ -29,6 +29,10 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { HomeAdminComponent } from './component/home-admin/home-admin.component';
 import { SafeUrlPipe } from './pipe/safe-url.pipe';
 import { ProjectIdInterceptor } from './core/interceptors/project.interceptor';
+import { CommonFieldsComponent } from './shared/common-fields/common-fields.component';
+import { ProductDetailsComponent } from './component/schemes/product-details/product-details.component';
+import { ServicesComponent } from './component/services/services.component';
+import { ServiceDetailComponent } from './component/services/service-detail/service-detail.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -52,7 +56,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     VerifyEmailComponent,
     ForgotPasswordComponent,
     HomeAdminComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    CommonFieldsComponent,
+    ProductDetailsComponent,
+    ServicesComponent,
+    ServiceDetailComponent
   ],
   imports: [
     ReactiveFormsModule,

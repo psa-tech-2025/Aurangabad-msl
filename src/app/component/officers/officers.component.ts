@@ -156,6 +156,16 @@ onPdfSelect(e: any) {
     this.gp.uploadImage(file).then(url => this.form.pdf = url);
   }
 }
+selectedOfficer: any = null;
+
+openModal(officer: any) {
+  this.selectedOfficer = officer;
+}
+
+closeModal() {
+  this.selectedOfficer = null;
+}
+
 
 
 }

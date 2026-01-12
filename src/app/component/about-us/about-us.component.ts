@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ContactInfoService } from 'src/app/services/contact-info.service';
 import { GpContentService } from 'src/app/services/gp-content.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class AboutUsComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private gp: GpContentService
+    private gp: GpContentService,
+     private contactInfo: ContactInfoService
   ) {}
 
   ngOnInit(): void {
@@ -36,11 +38,16 @@ export class AboutUsComponent implements OnInit {
   }
 
   loadAbout() {
-    this.gp.getAbout().subscribe(data => {
-      if (data) {
-        this.about = data;
+      this.gp.getAbout().subscribe(data => {
+    if (data) {
+      this.about = data;
+
+      // ✅ SHARE PHONE GLOBALLY
+      if (data.contactPhone) {
+        this.contactInfo.setPhone(data.contactPhone);
       }
-    });
+    }
+  });
   }
 
   save() {

@@ -1,25 +1,25 @@
 <!-- 🔐 ADMIN FORM -->
 <div *ngIf="isAdmin" class="container mb-4 p-3 border rounded bg-light">
-  <h6 class="fw-bold text-danger">Add / Update Product</h6>
+  <h6 class="fw-bold text-danger">Add / Update Service</h6>
   <div class="row g-2">
 
     <div class="col-md-3">
       <input class="form-control"
-             placeholder="Scheme Name"
+             placeholder="Service  Name"
              [(ngModel)]="form.name">
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3">A
       <input class="form-control"
              placeholder="Description"
              [(ngModel)]="form.desc">
     </div>
 
-    <div class="col-md-3">
+    <!-- <div class="col-md-3">
       <input class="form-control"
              placeholder="Link"
              [(ngModel)]="form.link">
-    </div>
+    </div> -->
 
     <!-- CATEGORY -->
     <div class="col-md-3">
@@ -110,7 +110,7 @@
           <div class="mt-auto pt-3">
          <button
   class="btn btn-primary w-100"
-  [routerLink]="['/product', scheme.id]">
+  [routerLink]="['/service', scheme.id]">
   View Details
 </button>
 
@@ -120,7 +120,7 @@
 
         <!-- FOOTER -->
         <div class="card-footer text-muted small text-center">
-                   <div class="card-footer text-center">
+          <div class="card-footer text-center">
   <button
     *ngIf="scheme.active"
     class="btn btn-success btn-sm w-100"
@@ -128,7 +128,7 @@
     <i class="bi bi-whatsapp me-1"></i>
     Enquiry Now
   </button>
-</div>   
+</div>        
         </div>
 
       </div>

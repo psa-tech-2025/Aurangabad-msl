@@ -1,0 +1,69 @@
+<div class="container my-5" *ngIf="!loading && product">
+
+  <!-- TITLE -->
+  <h2 class="fw-bold text-center mb-3">
+    {{ product.name }}
+  </h2>
+
+  <p class="text-center text-muted">
+    {{ product.desc }}
+  </p>
+
+  <div class="row g-4 mt-4">
+
+    <!-- LEFT : IMAGE -->
+    <div class="col-md-6">
+      <img
+        [src]="product.image"
+        class="img-fluid rounded shadow"
+        alt="Product Image">
+
+      <!-- EXTRA IMAGES -->
+      <div class="d-flex gap-2 mt-3" *ngIf="product.images?.length">
+        <img *ngFor="let img of product.images"
+             [src]="img"
+             class="img-thumb rounded shadow-sm">
+      </div>
+    </div>
+
+    <!-- RIGHT : DETAILS -->
+    <div class="col-md-6">
+
+      <h5 class="fw-bold">Details</h5>
+      <p>{{ product.description || product.extraText }}</p>
+
+      <!-- CATEGORY -->
+      <p>
+        <strong>Category:</strong>
+        <span class="badge bg-info text-dark">
+          {{ product.category | titlecase }}
+        </span>
+      </p>
+
+      <!-- VIDEO -->
+      <div *ngIf="product.video" class="mt-3">
+        <a [href]="product.video"
+           target="_blank"
+           class="btn btn-outline-primary me-2">
+          ▶ Watch Video
+        </a>
+      </div>
+
+      <!-- PDF -->
+      <div *ngIf="product.pdf" class="mt-3">
+        <a [href]="product.pdf"
+           target="_blank"
+           class="btn btn-outline-danger">
+          📄 Download PDF
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- LOADING -->
+<div class="text-center my-5" *ngIf="loading">
+  <div class="spinner-border text-primary"></div>
+</div>

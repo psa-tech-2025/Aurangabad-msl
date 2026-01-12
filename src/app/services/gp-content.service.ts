@@ -63,6 +63,9 @@ updateScheme(id: string, data: any) {
 deleteScheme(id: string) {
   return this.http.delete(`${API}/schemes/${id}`).toPromise();
 }
+getSchemeById(id: string) {
+  return this.http.get<any>(`${API}/schemes/${id}`);
+}
 
 /* ================= ABOUT US ================= */
 

@@ -4,14 +4,15 @@ import { AuthService } from 'src/app/services/auth.service';
 import { COMMON_DEFAULT_FORM, CATEGORY_OPTIONS } from 'src/app/common/common-form.config';
 import { ContactInfoService } from 'src/app/services/contact-info.service';
 
+
 @Component({
-  selector: 'app-schemes',
-  templateUrl: './schemes.component.html',
-  styleUrls: ['./schemes.component.css']
+  selector: 'app-services',
+  templateUrl: './services.component.html',
+  styleUrls: ['./services.component.css']
 })
-export class SCHEMESComponent implements OnInit {
+export class ServicesComponent implements OnInit {
   contactPhone: string | null = null;
-  schemes: any[] = [];
+ schemes: any[] = [];
   isAdmin = false;
 
   // ✅ use COMMON category config
@@ -34,7 +35,7 @@ export class SCHEMESComponent implements OnInit {
   constructor(
     private gp: GpContentService,
     private auth: AuthService,
-    private contactInfo: ContactInfoService
+     private contactInfo: ContactInfoService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +44,7 @@ export class SCHEMESComponent implements OnInit {
     this.auth.getAuthState().subscribe(user => {
       this.isAdmin = !!user;
     });
-          // ✅ RECEIVE PHONE
+      // ✅ RECEIVE PHONE
   this.contactInfo.phone$.subscribe(phone => {
     this.contactPhone = phone;
   });
@@ -116,7 +117,7 @@ export class SCHEMESComponent implements OnInit {
       ...COMMON_DEFAULT_FORM
     };
   }
-    enquiryNow(schemeName: string) {
+  enquiryNow(schemeName: string) {
   if (!this.contactPhone) {
     alert('Contact number not available');
     return;
@@ -132,4 +133,6 @@ export class SCHEMESComponent implements OnInit {
   const url = `https://wa.me/91${phone}?text=${message}`;
   window.open(url, '_blank');
 }
+
+
 }

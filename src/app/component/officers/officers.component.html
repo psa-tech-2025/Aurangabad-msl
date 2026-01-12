@@ -25,21 +25,21 @@
 </div>
 
 <!-- Video -->
-<div class="col-md-4">
+<!-- <div class="col-md-4">
   <input type="file" class="form-control"
          accept="video/*"
          (change)="onVideoSelect($event)">
-</div>
+</div> -->
 
 <!-- PDF -->
-<div class="col-md-4">
+<!-- <div class="col-md-4">
   <input type="file" class="form-control"
          accept="application/pdf"
          (change)="onPdfSelect($event)">
-</div>
+</div> -->
 
 <!-- Social Links -->
-<div class="col-md-6 mt-2">
+<!-- <div class="col-md-6 mt-2">
   <input class="form-control" placeholder="Facebook URL"
          [(ngModel)]="form.socialLinks.facebook">
 </div>
@@ -57,7 +57,7 @@
 <div class="col-md-6 mt-2">
   <input class="form-control" placeholder="Website URL"
          [(ngModel)]="form.socialLinks.website">
-</div>
+</div> -->
 
   </div>
 
@@ -66,106 +66,122 @@
   </button>
 </div>
 
+<!-- ================= OFFICERS LIST ================= -->
+<div class="container my-5">
 
-<div class="table-responsive">
-  <table class="table">
+  <div class="row g-4 justify-content-center">
 
-<thead class="table-light">
-  <tr>
-    <th>Sr No</th>
-    <th>Name</th>
-    <th>Designation</th>
-    <th>Phone</th>
-    <th>Photo</th>
-    <th>Video</th>
-    <th>PDF</th>
-    <th>Social</th>
-    <th *ngIf="isAdmin">Action</th>
-  </tr>
-</thead>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+         *ngFor="let officer of officers">
 
-<tbody>
-  <tr *ngFor="let officer of officers">
-    <td>{{ officer.idDisplay }}</td>
+      <div class="officer-card text-center h-100">
 
-    <td>{{ officer.name }}</td>
+        <!-- PHOTO -->
+       <div class="officer-photo-wrapper" (click)="openModal(officer)">
+  <img
+    *ngIf="officer.image; else noPhoto"
+    [src]="officer.image"
+    class="officer-photo"
+    alt="Officer Photo">
 
-    <td>{{ officer.post }}</td>
-
-    <td>{{ officer.phone }}</td>
-
-    <!-- 📸 PHOTO -->
-    <td>
-      <img *ngIf="officer.image"
-           [src]="officer.image"
-           width="50"
-           height="50"
-           class="rounded border">
-      <span *ngIf="!officer.image">—</span>
-    </td>
-
-    <!-- 🎥 VIDEO -->
-    <td>
-      <a *ngIf="officer.video"
-         [href]="officer.video"
-         target="_blank"
-         class="btn btn-sm btn-outline-primary">
-        🎥 View
-      </a>
-      <span *ngIf="!officer.video">—</span>
-    </td>
-
-    <!-- 📄 PDF -->
-    <td>
-      <a *ngIf="officer.pdf"
-         [href]="officer.pdf"
-         target="_blank"
-         class="btn btn-sm btn-outline-secondary">
-        📄 PDF
-      </a>
-      <span *ngIf="!officer.pdf">—</span>
-    </td>
-
-    <!-- 🌐 SOCIAL LINKS -->
-    <td>
-      <a *ngIf="officer.socialLinks?.facebook"
-         [href]="officer.socialLinks.facebook"
-         target="_blank"
-         class="me-1">FB</a>
-
-      <a *ngIf="officer.socialLinks?.instagram"
-         [href]="officer.socialLinks.instagram"
-         target="_blank"
-         class="me-1">IG</a>
-
-      <a *ngIf="officer.socialLinks?.youtube"
-         [href]="officer.socialLinks.youtube"
-         target="_blank"
-         class="me-1">YT</a>
-
-      <a *ngIf="officer.socialLinks?.website"
-         [href]="officer.socialLinks.website"
-         target="_blank">WEB</a>
-
-      <span *ngIf="!officer.socialLinks">—</span>
-    </td>
-
-    <!-- 🔐 ADMIN ACTIONS -->
-    <td *ngIf="isAdmin">
-      <button class="btn btn-sm btn-warning me-1"
-              (click)="edit(officer)">
-        Edit
-      </button>
-      <button class="btn btn-sm btn-danger"
-              (click)="delete(officer.id)">
-        Delete
-      </button>
-    </td>
-  </tr>
-</tbody>
-
-</table>
+  <ng-template #noPhoto>
+    <div class="no-photo">👤</div>
+  </ng-template>
 </div>
+
+
+        <!-- INFO -->
+        <h6 class="fw-bold mt-3 mb-1">
+          {{ officer.name }}
+        </h6>
+
+        <p class="text-muted small mb-2">
+          {{ officer.post }}
+        </p>
+
+        <!-- PHONE -->
+        <p class="mb-2">
+          <a [href]="'tel:' + officer.phone"
+             class="text-decoration-none text-dark">
+            📞 {{ officer.phone }}
+          </a>
+        </p>
+
+        <!-- 🔐 ADMIN ACTIONS -->
+        <div *ngIf="isAdmin" class="d-flex justify-content-center gap-2 mt-2">
+          <button class="btn btn-sm btn-warning"
+                  (click)="edit(officer)">
+            Edit
+          </button>
+          <button class="btn btn-sm btn-danger"
+                  (click)="delete(officer.id)">
+            Delete
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ================= OFFICER MODAL ================= -->
+<div class="modal fade show"
+     tabindex="-1"
+     *ngIf="selectedOfficer"
+     style="display: block; background: rgba(0,0,0,0.6);">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Officer Details
+        </h5>
+        <button type="button" class="btn-close"
+                (click)="closeModal()"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body text-center">
+
+        <!-- FULL IMAGE -->
+        <img
+          *ngIf="selectedOfficer.image"
+          [src]="selectedOfficer.image"
+          class="modal-photo mb-3"
+          alt="Officer Image">
+
+        <h5 class="fw-bold text-danger">
+          {{ selectedOfficer.name }}
+        </h5>
+
+        <p class="text-muted mb-1">
+          {{ selectedOfficer.post }}
+        </p>
+
+        <p>
+          <a [href]="'tel:' + selectedOfficer.phone"
+             class="text-decoration-none text-dark fw-semibold">
+            📞 {{ selectedOfficer.phone }}
+          </a>
+        </p>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary"
+                (click)="closeModal()">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
 
 
