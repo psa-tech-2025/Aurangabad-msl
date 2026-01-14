@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { GpContentService } from 'src/app/services/gp-content.service';
 import { HomeNoticeService } from 'src/app/services/home-notice.service';
 import { CATEGORY_LABELS } from 'src/app/models/category-labels';
+import { ContactInfoService } from 'src/app/services/contact-info.service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { CATEGORY_LABELS } from 'src/app/models/category-labels';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+    contactPhone: string | null = null;
    services: any[] = [];
   filteredServices: any[] = [];
   searchText = '';
@@ -53,13 +55,16 @@ notices: any[] = [];
   constructor( private router : Router,
     private gp: GpContentService,
     private noticeService: HomeNoticeService,
+      private contactInfo: ContactInfoService
   ) {
   //     translate.addLangs(['en', 'mr']);
   // translate.setDefaultLang('mr');
    }
 
   ngOnInit(): void {
-
+      this.contactInfo.phone$.subscribe(phone => {
+    this.contactPhone = phone;
+  });
 
         // ✅ FETCH ABOUT DATA (SAME AS ABOUT PAGE)
     this.gp.getAbout().subscribe(data => {
@@ -96,49 +101,50 @@ notices: any[] = [];
       this.maps = res;
     });
         // ✅ LOAD SERVICES / PRODUCTS
-    this.gp.getSchemes().subscribe(data => {
+this.gp.getSchemes().subscribe(data => {
 
   this.services = data.map((s: any) => ({
     ...s,
     id: s._id,
-    category: s.category || 'other'   // 👈 DEFAULT CATEGORY
+    category: s.category || 'other'
   }));
 
-  // ✅ FILTERED LIST INIT
-  this.filteredServices = this.services;
-    this.categories = this.preferredCategoryOrder.filter(cat =>
-  this.services.some(s => s.category === cat)
-);
+  // ✅ SHOW ALL INITIALLY
+  this.filteredServices = [...this.services];
 
-  // ✅ SAFE CATEGORY LIST
-  // this.categories = Array.from(
-  //   new Set(
-  //     this.services
-  //       .map(s => s.category)
-  //       .filter(c => c && c.trim().length > 0)
-  //   )
-  // );
-
+  // ✅ DYNAMIC CATEGORY LIST (from uploaded data)
+  this.categories = Array.from(
+    new Set(
+      this.services
+        .map(s => s.category)
+        .filter(c => c && c.trim().length > 0)
+    )
+  );
 });
+
+
 
   }
 
   // 🔍 FILTER
-  applyFilter() {
-    this.filteredServices = this.services.filter(s => {
+applyFilter() {
+  const search = this.searchText.toLowerCase().trim();
 
-      const matchCategory =
-        this.selectedCategory === 'all' ||
-        s.category === this.selectedCategory;
+  this.filteredServices = this.services.filter(s => {
 
-      const matchSearch =
-        !this.searchText ||
-        s.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        s.desc.toLowerCase().includes(this.searchText.toLowerCase());
+    const matchCategory =
+      this.selectedCategory === 'all' ||
+      s.category === this.selectedCategory;
 
-      return matchCategory && matchSearch;
-    });
-  }
+    const matchSearch =
+      !search ||
+      (s.name && s.name.toLowerCase().includes(search)) ||
+      (s.desc && s.desc.toLowerCase().includes(search));
+
+    return matchCategory && matchSearch;
+  });
+}
+
 
   // READ MORE
   goToServices() {
@@ -152,6 +158,24 @@ notices: any[] = [];
   goToOfficers() {
     this.router.navigate(['/officers']);
   }
+enquiryNow(schemeName: string) {
+  // ✅ Default fallback number
+  const DEFAULT_PHONE = '9766871928';
+
+  // Use contactPhone if available, otherwise fallback
+  const rawPhone = this.contactPhone || DEFAULT_PHONE;
+
+  const phone = rawPhone.replace(/[^0-9]/g, '').slice(-10);
+
+  const message =
+    `Thank you for contacting SA ELECTRONICS.%0A%0A` +
+    `Enquiry for service: ${schemeName}%0A` +
+    `Please share more details.`;
+
+  const url = `https://wa.me/91${phone}?text=${message}`;
+  window.open(url, '_blank');
+}
+
 
 }
   

@@ -1,24 +1,45 @@
-/* Header brand wrapper */
+/* Brand wrapper */
 .header-brand {
   gap: 10px;
 }
 
-/* Logo standard size */
+/* Logo */
 .brand-logo {
-  height: 100px;        /* Standard header logo height */
-  width: 100px;
-  object-fit: contain;
+  height: 42px;
+  width: auto;
 }
 
-/* Title styling */
+/* Company name – attractive gradient */
 .brand-title {
-  font-size: 1.1rem;
-  color: #1f2937;      /* Professional dark gray */
-  letter-spacing: 0.5px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+
+  /* 🔥 Attractive gradient color */
+  background: linear-gradient(
+    90deg,
+    #0d6efd,   /* primary blue */
+    #6610f2,   /* violet */
+    #dc3545    /* red accent */
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Optional subtitle */
 .brand-subtitle {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #6c757d;
+  letter-spacing: 0.6px;
+}
+@media (max-width: 576px) {
+  .brand-title {
+    font-size: 1rem;
+  }
+
+  .brand-logo {
+    height: 34px;
+  }
 }

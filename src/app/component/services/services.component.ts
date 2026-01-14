@@ -16,7 +16,8 @@ export class ServicesComponent implements OnInit {
   isAdmin = false;
 
   // ✅ use COMMON category config
-  categories = CATEGORY_OPTIONS;
+ categories: string[] = [];
+
 
   // ✅ FULL FORM = scheme fields + common fields
   form: any = {
@@ -50,14 +51,26 @@ export class ServicesComponent implements OnInit {
   });
   }
 
-  loadSchemes() {
-    this.gp.getSchemes().subscribe((data: any[]) => {
-      this.schemes = data.map((s: any) => ({
-        ...s,
-        id: s._id
-      }));
-    });
-  }
+loadSchemes() {
+  this.gp.getSchemes().subscribe((data: any[]) => {
+
+    this.schemes = data.map((s: any) => ({
+      ...s,
+      id: s._id,
+      category: s.category || 'other'
+    }));
+
+    // 🔥 BUILD CATEGORY LIST FROM EXISTING PRODUCTS
+    this.categories = Array.from(
+      new Set(
+        this.schemes
+          .map(s => s.category)
+          .filter(c => c && c.trim().length > 0)
+      )
+    );
+  });
+}
+
 
   save() {
     if (!this.isAdmin) return;

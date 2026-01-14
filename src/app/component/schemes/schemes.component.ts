@@ -13,9 +13,12 @@ export class SCHEMESComponent implements OnInit {
   contactPhone: string | null = null;
   schemes: any[] = [];
   isAdmin = false;
+  showNewCategory = false;
+newCategory = '';
 
   // ✅ use COMMON category config
-  categories = CATEGORY_OPTIONS;
+ categories: string[] = [];
+
 
   // ✅ FULL FORM = scheme fields + common fields
   form: any = {
@@ -49,31 +52,57 @@ export class SCHEMESComponent implements OnInit {
   });
   }
 
-  loadSchemes() {
-    this.gp.getSchemes().subscribe((data: any[]) => {
-      this.schemes = data.map((s: any) => ({
-        ...s,
-        id: s._id
-      }));
-    });
+loadSchemes() {
+  this.gp.getSchemes().subscribe((data: any[]) => {
+
+    this.schemes = data.map((s: any) => ({
+      ...s,
+      id: s._id,
+      category: s.category || 'other'
+    }));
+
+    // 🔥 BUILD CATEGORY LIST FROM EXISTING PRODUCTS
+    this.categories = Array.from(
+      new Set(
+        this.schemes
+          .map(s => s.category)
+          .filter(c => c && c.trim().length > 0)
+      )
+    );
+  });
+}
+onCategoryChange() {
+  if (this.form.category === '__other__') {
+    this.showNewCategory = true;
+    this.form.category = '';
+  } else {
+    this.showNewCategory = false;
+    this.newCategory = '';
+  }
+}
+
+
+save() {
+  if (!this.isAdmin) return;
+
+  if (this.showNewCategory && this.newCategory.trim()) {
+    this.form.category = this.newCategory.trim().toLowerCase();
   }
 
-  save() {
-    if (!this.isAdmin) return;
+  const payload = { ...this.form };
+  delete payload.id;
 
-    const payload = { ...this.form };
-    delete payload.id;
-
-    if (this.form.id) {
-      this.gp.updateScheme(this.form.id, payload)
-        .then(() => this.loadSchemes());
-    } else {
-      this.gp.addScheme(payload)
-        .then(() => this.loadSchemes());
-    }
-
-    this.reset();
+  if (this.form.id) {
+    this.gp.updateScheme(this.form.id, payload)
+      .then(() => this.loadSchemes());
+  } else {
+    this.gp.addScheme(payload)
+      .then(() => this.loadSchemes());
   }
+
+  this.reset();
+}
+
 
   edit(scheme: any) {
     this.form = {
@@ -106,16 +135,20 @@ export class SCHEMESComponent implements OnInit {
     }
   }
 
-  reset() {
-    this.form = {
-      id: null,
-      name: '',
-      desc: '',
-      link: '',
-      category: 'business',
-      ...COMMON_DEFAULT_FORM
-    };
-  }
+reset() {
+  this.form = {
+    id: null,
+    name: '',
+    desc: '',
+    link: '',
+    category: 'other',
+    ...COMMON_DEFAULT_FORM
+  };
+
+  this.showNewCategory = false;
+  this.newCategory = '';
+}
+
     enquiryNow(schemeName: string) {
   if (!this.contactPhone) {
     alert('Contact number not available');

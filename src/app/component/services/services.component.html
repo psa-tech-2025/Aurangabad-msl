@@ -130,6 +130,21 @@
   </button>
 </div>        
         </div>
+        <!-- 🔐 ADMIN ACTIONS -->
+<div *ngIf="isAdmin" class="admin-actions mt-2">
+  <button
+    class="btn btn-sm btn-outline-primary me-2"
+    (click)="edit(scheme)">
+    <i class="bi bi-pencil"></i> Edit
+  </button>
+
+  <button
+    class="btn btn-sm btn-outline-danger"
+    (click)="delete(scheme.id)">
+    <i class="bi bi-trash"></i> Delete
+  </button>
+</div>
+
 
       </div>
 

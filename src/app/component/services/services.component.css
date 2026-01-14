@@ -1,0 +1,10 @@
+.admin-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-actions button {
+  font-size: 12px;
+  padding: 4px 8px;
+}

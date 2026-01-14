@@ -4,32 +4,40 @@
   <div class="row g-2">
 
     <div class="col-md-3">
-      <input class="form-control"
-             placeholder="Product Name"
-             [(ngModel)]="form.name">
+      <input class="form-control" placeholder="Product Name" [(ngModel)]="form.name">
     </div>
 
     <div class="col-md-3">
-      <input class="form-control"
-             placeholder="Description"
-             [(ngModel)]="form.desc">
+      <input class="form-control" placeholder="Description" [(ngModel)]="form.desc">
     </div>
 
     <div class="col-md-3">
-      <input class="form-control"
-             placeholder="Link"
-             [(ngModel)]="form.link">
+      <input class="form-control" placeholder="Link" [(ngModel)]="form.link">
     </div>
 
     <!-- CATEGORY -->
-    <div class="col-md-3">
-      <select class="form-select"
-              [(ngModel)]="form.category">
-        <option *ngFor="let c of categories" [value]="c">
-          {{ c | titlecase }}
-        </option>
-      </select>
-    </div>
+ <!-- CATEGORY -->
+<div class="col-md-3">
+  <select class="form-select"
+          [(ngModel)]="form.category"
+          (change)="onCategoryChange()">
+
+    <option *ngFor="let c of categories" [value]="c">
+      {{ c | titlecase }}
+    </option>
+
+    <option value="__other__">Other (Add New)</option>
+  </select>
+</div>
+
+<!-- NEW CATEGORY INPUT -->
+<div class="col-md-3" *ngIf="showNewCategory">
+  <input
+    class="form-control"
+    placeholder="Enter new category"
+    [(ngModel)]="newCategory">
+</div>
+
 
   </div>
 
@@ -51,16 +59,12 @@
 
   <div class="row g-4">
 
-    <div class="col-lg-4 col-md-6 col-sm-12"
-         *ngFor="let scheme of schemes">
+    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let scheme of schemes">
 
       <div class="card h-100 shadow-sm scheme-card">
 
         <!-- IMAGE -->
-        <img *ngIf="scheme.image"
-             [src]="scheme.image"
-             class="card-img-top"
-             alt="Scheme image">
+        <img *ngIf="scheme.image" [src]="scheme.image" class="card-img-top" alt="Scheme image">
 
         <div class="card-body d-flex flex-column">
 
@@ -70,8 +74,7 @@
               {{ scheme.name }}
             </h5>
 
-            <span *ngIf="scheme.featured"
-                  class="badge bg-warning text-dark">
+            <span *ngIf="scheme.featured" class="badge bg-warning text-dark">
               Featured
             </span>
           </div>
@@ -82,59 +85,58 @@
           </p>
 
           <!-- EXTRA TEXT -->
-          <p *ngIf="scheme.extraText"
-             class="card-text small">
+          <p *ngIf="scheme.extraText" class="card-text small">
             {{ scheme.extraText }}
           </p>
 
           <!-- VIDEO -->
           <div *ngIf="scheme.video" class="mt-2">
             <small class="text-muted">Video:</small>
-            <a [href]="scheme.video"
-               target="_blank"
-               class="d-block text-primary">
+            <a [href]="scheme.video" target="_blank" class="d-block text-primary">
               Watch Video
             </a>
           </div>
 
           <!-- PDF -->
           <div *ngIf="scheme.pdf" class="mt-2">
-            <a [href]="scheme.pdf"
-               target="_blank"
-               class="btn btn-sm btn-outline-secondary">
+            <a [href]="scheme.pdf" target="_blank" class="btn btn-sm btn-outline-secondary">
               View PDF
             </a>
           </div>
 
           <!-- LINK BUTTON -->
           <div class="mt-auto pt-3">
-         <button
-  class="btn btn-primary w-100"
-  [routerLink]="['/product', scheme.id]">
-  View Details
-</button>
+            <button class="btn btn-primary w-100" [routerLink]="['/product', scheme.id]">
+              View Details
+            </button>
 
           </div>
 
         </div>
-
         <!-- FOOTER -->
         <div class="card-footer text-muted small text-center">
-                   <div class="card-footer text-center">
-  <button
-    *ngIf="scheme.active"
-    class="btn btn-success btn-sm w-100"
-    (click)="enquiryNow(scheme.name)">
-    <i class="bi bi-whatsapp me-1"></i>
-    Enquiry Now
-  </button>
-</div>   
+          <div class="card-footer text-center">
+            <button *ngIf="scheme.active" class="btn btn-success btn-sm w-100" (click)="enquiryNow(scheme.name)">
+              <i class="bi bi-whatsapp me-1"></i>
+              Enquiry Now
+            </button>
+          </div>
         </div>
 
       </div>
+      <!-- 🔐 ADMIN ACTIONS -->
+      <div *ngIf="isAdmin" class="admin-actions mt-2">
+        <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(scheme)">
+          <i class="bi bi-pencil"></i> Edit
+        </button>
+
+        <button class="btn btn-sm btn-outline-danger" (click)="delete(scheme.id)">
+          <i class="bi bi-trash"></i> Delete
+        </button>
+      </div>
+
 
     </div>
 
   </div>
 </div>
-

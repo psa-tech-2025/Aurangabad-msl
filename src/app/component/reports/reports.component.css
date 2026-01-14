@@ -60,6 +60,7 @@
 }
 
 /* RIGHT SIDE */
+/* RIGHT SIDE */
 .contact-map {
   flex: 1;
   min-height: 400px;
@@ -71,13 +72,31 @@
   border: 0;
 }
 
-/* 📱 RESPONSIVE */
+/* 📱 MOBILE VIEW */
 @media (max-width: 768px) {
   .contact-card {
     flex-direction: column;
   }
 
   .contact-map {
-    min-height: 300px;
+    height: 250px;       /* FIXED height for mobile */
+    min-height: unset;  /* prevent overflow */
+  }
+
+  .contact-map iframe {
+    height: 100%;
+  }
+
+  .contact-info {
+    padding: 22px 18px;
+  }
+
+  .contact-info h2 {
+    font-size: 20px;
+  }
+
+  .info-block p {
+    font-size: 14px;
   }
 }
+

@@ -214,5 +214,186 @@
 }
 
 
+/* Image wrapper */
+.image-box {
+  height: 220px;              /* fixed height */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  overflow: hidden;           /* SAFE */
+}
 
-  
+/* Actual image */
+.product-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;        /* FULL image visible */
+}
+
+  /* Product / Scheme Title */
+.scheme-title {
+  color: blue;            /* Dark slate (professional) */
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+/* Description text */
+.scheme-desc {
+  color: #6b7280;            /* Soft gray */
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+/* Image height control */
+.carousel-img {
+  height: 520px;
+  object-fit: cover;
+}
+
+/* Dark overlay for readability */
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.35)
+  );
+  z-index: 1;
+}
+
+/* Caption */
+.carousel-caption {
+  z-index: 2;
+  text-align: left;
+  bottom: 22%;
+}
+
+/* Slide heading */
+.slide-title {
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+  margin-bottom: 12px;
+}
+
+/* Slide paragraph */
+.slide-desc {
+  color: #e9ecef;
+  font-size: 1rem;
+  max-width: 750px;
+  line-height: 1.6;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 768px) {
+  .carousel-img {
+    height: 360px;
+  }
+
+  .carousel-caption {
+    bottom: 14%;
+    text-align: center;
+  }
+
+  .slide-title {
+    font-size: 1.4rem;
+  }
+
+  .slide-desc {
+    font-size: 0.9rem;
+  }
+}
+/* Outer container – ticker style */
+.scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+
+  /* 🔥 Background & border */
+  background: linear-gradient(90deg, #f8f9fa, #eef2ff);
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Animated text */
+.scroll-text {
+  display: inline-block;
+  padding-left: 100%; /* start from right */
+
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+
+  /* Attractive gradient text */
+  background: linear-gradient(90deg, #0d6efd, #6610f2, #dc3545);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: scroll-left 18s linear infinite;
+}
+
+/* Animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@media (max-width: 768px) {
+  .scroll-wrapper {
+    padding: 8px 0;
+    border-radius: 6px;
+  }
+
+  .scroll-text {
+    font-size: 1rem;
+    animation-duration: 14s;
+  }
+}
+/* About section full width */
+.about-section {
+  width: 100%;
+  padding: 60px 20px;
+  background: #ffffff;
+}
+
+/* Title */
+.about-title {
+  color: #800000;
+  font-weight: 700;
+}
+
+/* Divider */
+.about-divider {
+  border-top: 2px solid #800000;
+  width: 90%;
+  margin: 0 auto 30px auto;
+}
+
+/* Paragraph text */
+.about-text {
+  color: #6c757d;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+@media (max-width: 768px) {
+  .about-section {
+    padding: 40px 16px;
+  }
+
+  .about-title {
+    font-size: 1.4rem;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+  }
+}
