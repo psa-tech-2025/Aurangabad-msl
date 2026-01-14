@@ -1,13 +1,22 @@
 
 <!-- Top Header -->
 <div class="bg-light p-2 d-flex justify-content-between align-items-center">
-  <div class="d-flex align-items-center">
-    <img src="../../../assets/images/SA-Electronicslogo.png" alt="Emblem" height="50" class="me-2" />
-    <div>
-     <h5 class="mb-0 fw-bold">{{ 'TITLE.PANCHAYAT' | translate }}</h5>
-      <!-- <small class="text-muted"> ग्रामपंचायत </small> -->
-    </div>
+<div class="d-flex align-items-center header-brand">
+  <img
+    src="assets/images/logo2.png"
+    alt="Emblem"
+    class="brand-logo me-2"
+  />
+
+  <div class="brand-text">
+    <h5 class="mb-0 fw-bold brand-title">
+      {{ 'TITLE.PANCHAYAT' | translate }}
+    </h5>
+    <!-- Optional subtitle -->
+    <!-- <small class="brand-subtitle">ग्रामपंचायत</small> -->
   </div>
+</div>
+
 
   <div class="d-flex align-items-center">
     <!-- <button class="btn btn-outline-primary btn-sm me-1">A+</button>
@@ -26,7 +35,7 @@
 </div>
 
 <!-- Blue Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <button
       class="navbar-toggler"

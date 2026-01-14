@@ -1,0 +1,24 @@
+/* Header brand wrapper */
+.header-brand {
+  gap: 10px;
+}
+
+/* Logo standard size */
+.brand-logo {
+  height: 100px;        /* Standard header logo height */
+  width: 100px;
+  object-fit: contain;
+}
+
+/* Title styling */
+.brand-title {
+  font-size: 1.1rem;
+  color: #1f2937;      /* Professional dark gray */
+  letter-spacing: 0.5px;
+}
+
+/* Optional subtitle */
+.brand-subtitle {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
