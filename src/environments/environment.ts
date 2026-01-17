@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
 
-  // apiUrl: 'http://localhost:3000/api',
+  //  apiUrl: 'http://localhost:3000/api',
   apiUrl: 'http://192.168.126.130:3001/api',
-  projectId: 'SA-Electronics-01',
+  projectId: 'SA-Electronics-100',
       firebase: {
   apiKey: "AIzaSyB2IXjhzxDC42VOchg92_6H1wsiZvfa33U",
   authDomain: "fir-electionsps.firebaseapp.com",

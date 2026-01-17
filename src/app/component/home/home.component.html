@@ -5,52 +5,52 @@
 
     <!-- SLIDE 1 -->
     <div class="carousel-item active">
-      <img src="../../../assets/images/img3.png" class="d-block w-100 carousel-img" alt="Industry Solutions">
+      <img src="../../../assets/images/all-ultra-product.jpeg" class="d-block w-100 carousel-img" alt="Industry Solutions">
 
       <div class="carousel-overlay"></div>
 
       <div class="carousel-caption">
-        <h2 class="slide-title">
+        <!-- <h2 class="slide-title">
           SA Electronics is a Leading Manufacturer and Developer of Industrial Products.
         </h2>
         <p class="slide-desc">
           Electromagnetic Flow Meter, Online Effluent Quality Monitoring System (COD BOD TSS PH),
           Online PH Meter, Galvanic-Maintenance Free DO2 Electrode etc.
-        </p>
+        </p> -->
       </div>
     </div>
 
     <!-- SLIDE 2 -->
     <div class="carousel-item">
-      <img src="../../../assets/images/dairy.png" class="d-block w-100 carousel-img" alt="Dairy Industry">
+      <img src="../../../assets/images/types-of-flowmeter.jpeg" class="d-block w-100 carousel-img" alt="Dairy Industry">
 
       <div class="carousel-overlay"></div>
 
       <div class="carousel-caption">
-        <h2 class="slide-title">
+        <!-- <h2 class="slide-title">
           SA Electronics is a Leading Manufacturer and Developer of Industrial Products.
         </h2>
         <p class="slide-desc">
           Electromagnetic Flow Meter, Online Effluent Quality Monitoring System (COD BOD TSS PH),
           Online PH Meter, Galvanic-Maintenance Free DO2 Electrode etc.
-        </p>
+        </p> -->
       </div>
     </div>
 
     <!-- SLIDE 3 -->
     <div class="carousel-item">
-      <img src="../../../assets/images/pharma.png" class="d-block w-100 carousel-img" alt="Pharma Industry">
+      <img src="../../../assets/images/ultrasonic-flowmeter.jpeg" class="d-block w-100 carousel-img" alt="Pharma Industry">
 
       <div class="carousel-overlay"></div>
 
       <div class="carousel-caption">
-        <h2 class="slide-title">
+        <!-- <h2 class="slide-title">
           SA Electronics is a Leading Manufacturer and Developer of Industrial Products.
         </h2>
         <p class="slide-desc">
           Electromagnetic Flow Meter, Online Effluent Quality Monitoring System (COD BOD TSS PH),
           Online PH Meter, Galvanic-Maintenance Free DO2 Electrode etc.
-        </p>
+        </p> -->
       </div>
     </div>
 
@@ -69,7 +69,9 @@
 
 <div class="scroll-wrapper">
   <div class="scroll-text">
-    SA Electronics is a Leading Manufacturer and Developer of Industrial Products
+   <h2> SA Electronics is a Leading Manufacturer and Developer of Industrial Products</h2>
+   <p>  Electromagnetic Flow Meter, Online Effluent Quality Monitoring System (COD BOD TSS PH),
+          Online PH Meter, Galvanic-Maintenance Free DO2 Electrode etc.</p>
   </div>
 </div>
 
@@ -77,42 +79,71 @@
   <!-- //About section -->
   <!-- ================= ABOUT SECTION ================= -->
   <!-- ================= ABOUT SECTION ================= -->
-<div class="container-fluid about-section my-5">
+<section class="about-section">
 
-  <div class="row justify-content-center">
+  <div class="about-wrapper">
 
-    <!-- CENTERED CONTENT WITH MAX WIDTH -->
-    <div class="col-12 col-xl-10">
+    <div class="row align-items-center g-4">
 
-      <div class="row align-items-center">
+      <!-- LEFT CONTENT -->
+      <div class="col-lg-7 col-md-12">
+        <h2 class="about-title">
+          {{ 'about.title' | translate }}
+        </h2>
 
-        <!-- LEFT TEXT -->
-        <div class="col-md-7">
-          <h2 class="text-center mb-4 about-title">
-            {{ 'about.title' | translate }}
-          </h2>
+        <div class="about-divider"></div>
 
-          <hr class="about-divider">
+        <p class="about-text">
+          {{ about.intro }}
+        </p>
 
-          <p class="about-text">
-            {{ about.intro }}
-          </p>
+        <p *ngIf="about.servicesIntro" class="about-text">
+          {{ about.servicesIntro }}
+        </p>
 
-          <p *ngIf="about.servicesIntro" class="about-text">
-            {{ about.servicesIntro }}
-          </p>
-
-          <a routerLink="/about-us" class="btn btn-outline-danger mt-2">
-            Read More
-          </a>
-        </div>
-
+        <a routerLink="/about-us" class="btn btn-outline-danger about-btn">
+          Read More
+        </a>
       </div>
 
+      <!-- RIGHT ACCENT BLOCK (OPTIONAL IMAGE / COLOR) -->
+      <div class="col-lg-5 col-md-12">
+  <div class="about-accent premium-accent">
+
+    <div class="accent-header">
+      <span class="accent-badge">Why Choose Us</span>
+      <h4>What Makes Us Different</h4>
     </div>
+
+    <ul class="accent-list">
+      <li>
+        <i class="bi bi-shield-check"></i>
+        Trusted & Secure Services
+      </li>
+      <li>
+        <i class="bi bi-people-fill"></i>
+        Experienced Professional Team
+      </li>
+      <li>
+        <i class="bi bi-award-fill"></i>
+        Quality Products & Support
+      </li>
+      <li>
+        <i class="bi bi-emoji-smile-fill"></i>
+        100% Customer Satisfaction
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+
+    </div>
+
   </div>
 
-</div>
+</section>
+
 
   <!-- ================= OFFICERS PREVIEW ================= -->
   <div class="container my-5">
@@ -182,18 +213,19 @@
       <!-- CATEGORY -->
       <!-- CATEGORY -->
       <div class="col-md-3">
-   <select
+  <select
   class="form-select"
   [(ngModel)]="selectedCategory"
   (change)="applyFilter()">
 
-  <option value="all">All Categories</option>
+  <option value="all">ALL</option>
 
   <option *ngFor="let c of categories" [value]="c">
-    {{ categoryLabels[c] || (c | titlecase) }}
+    {{ categoryLabels[c] }}
   </option>
 
 </select>
+
 
 
       </div>
@@ -235,7 +267,7 @@
             </div>
 
             <div class="mt-auto">
-              <button class="btn btn-outline-danger w-100" [routerLink]="['/service', scheme.id]">
+              <button class="btn btn-outline-danger w-100" [routerLink]="['/product', scheme.id]">
                 View Details
               </button>
             </div>

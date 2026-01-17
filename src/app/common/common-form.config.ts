@@ -1,8 +1,17 @@
 export const CATEGORY_OPTIONS = [
-  'landing','business','ecommerce','app','seo','other',
-  'service','custom','subscription','digital','physical',
-  'consulting','training','marketing','design','development',
-  'maintenance','support','enterprise','startup','personal','professional'
+  // 'landing','business','ecommerce','app','seo','other',
+  // 'service','custom','subscription','digital','physical',
+  // 'consulting','training','marketing','design','development',
+  // 'maintenance','support','enterprise','startup','personal','professional'
+  'analytical',
+  'pressure',
+  'temperature',
+  'level',
+  'indicator',
+  'service',
+  'processinstruments',
+  'flow',
+  'other'
 ];
 
 export const COMMON_DEFAULT_FORM = {

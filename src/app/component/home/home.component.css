@@ -1,9 +1,9 @@
 
-.carousel-inner img {
-  width: 100%;              /* Always full width */
-  height: 400px;            /* Set standard height */
-  object-fit: cover;        /* Crop nicely without distortion */
-}
+
+
+
+
+
 
 .card-title {
     color: #a51919;
@@ -145,59 +145,7 @@
     height: 200px;
   }
 }
-.carousel-img {
-  height: 70vh;
-  object-fit: cover;
-}
 
-.carousel-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.65)
-  );
-}
-
-.carousel-caption {
-  position: absolute;
-  bottom: 20%;
-  z-index: 10;
-  max-width: 700px;
-  text-align: left;
-}
-
-.carousel-caption h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.carousel-caption p {
-  font-size: 1.1rem;
-  color: #f1f1f1;
-}
-
-/* MOBILE OPTIMIZATION */
-@media (max-width: 768px) {
-  .carousel-img {
-    height: 45vh;
-  }
-
-  .carousel-caption {
-    bottom: 10%;
-    text-align: center;
-    padding: 0 1rem;
-  }
-
-  .carousel-caption h2 {
-    font-size: 1.5rem;
-  }
-
-  .carousel-caption p {
-    font-size: 0.95rem;
-  }
-}
 .scheme-card {
   border-radius: 14px;
   transition: transform .3s ease, box-shadow .3s ease;
@@ -245,81 +193,24 @@
   font-size: 0.9rem;
   line-height: 1.4;
 }
-/* Image height control */
-.carousel-img {
-  height: 520px;
-  object-fit: cover;
-}
 
-/* Dark overlay for readability */
-.carousel-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.6),
-    rgba(0, 0, 0, 0.35)
-  );
-  z-index: 1;
-}
 
-/* Caption */
-.carousel-caption {
-  z-index: 2;
-  text-align: left;
-  bottom: 22%;
-}
 
-/* Slide heading */
+/* Slide heading – dark & attractive */
 .slide-title {
-  color: #ffffff;
-  font-size: 2.2rem;
-  font-weight: 700;
+  color: #1f2937;            /* dark slate (very readable on white) */
+  font-size: 2.3rem;
+  font-weight: 800;
   line-height: 1.25;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+
+  /* Shadow for image contrast */
+  text-shadow:
+    0 2px 6px rgba(255,255,255,0.6), /* light glow on white image */
+    0 4px 10px rgba(0,0,0,0.25);     /* depth */
 }
 
-/* Slide paragraph */
-.slide-desc {
-  color: #e9ecef;
-  font-size: 1rem;
-  max-width: 750px;
-  line-height: 1.6;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-}
 
-@media (max-width: 768px) {
-  .carousel-img {
-    height: 360px;
-  }
-
-  .carousel-caption {
-    bottom: 14%;
-    text-align: center;
-  }
-
-  .slide-title {
-    font-size: 1.4rem;
-  }
-
-  .slide-desc {
-    font-size: 0.9rem;
-  }
-}
-/* Outer container – ticker style */
-.scroll-wrapper {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-
-  /* 🔥 Background & border */
-  background: linear-gradient(90deg, #f8f9fa, #eef2ff);
-  border: 1px solid #dbeafe;
-  border-radius: 8px;
-
-  padding: 10px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
 
 /* Animated text */
 .scroll-text {
@@ -357,43 +248,370 @@
     font-size: 1rem;
     animation-duration: 14s;
   }
-}
-/* About section full width */
+
+/* FULL WIDTH ABOUT SECTION */
 .about-section {
   width: 100%;
-  padding: 60px 20px;
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  padding: 80px 0;
 }
 
-/* Title */
+/* CENTERED CONTENT WIDTH */
+.about-wrapper {
+  max-width: 1320px;   /* Large desktop friendly */
+  margin: auto;
+  padding: 0 24px;
+}
+
+/* TITLE */
 .about-title {
-  color: #800000;
+  font-size: 2.2rem;
   font-weight: 700;
+  color: #800000;
+  margin-bottom: 12px;
 }
 
-/* Divider */
+/* DIVIDER */
 .about-divider {
-  border-top: 2px solid #800000;
-  width: 90%;
-  margin: 0 auto 30px auto;
+  width: 80px;
+  height: 4px;
+  background: #800000;
+  margin-bottom: 25px;
+  border-radius: 4px;
 }
 
-/* Paragraph text */
+/* TEXT */
 .about-text {
-  color: #6c757d;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+/* BUTTON */
+.about-btn {
+  padding: 10px 24px;
+  font-weight: 600;
+  border-radius: 30px;
+}
+
+/* RIGHT ACCENT BOX */
+.about-accent {
+  background: #800000;
+  color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.about-accent h4 {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.about-accent ul {
+  padding-left: 18px;
+}
+
+.about-accent li {
+  margin-bottom: 10px;
   font-size: 1rem;
 }
-@media (max-width: 768px) {
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
   .about-section {
-    padding: 40px 16px;
+    padding: 60px 0;
   }
 
   .about-title {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  .about-divider {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-text {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .about-btn {
+    display: block;
+    margin: 20px auto 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-section {
+    padding: 45px 0;
   }
 
   .about-text {
     font-size: 0.95rem;
   }
+}
+}
+/* Premium Accent Box */
+.premium-accent {
+  background: linear-gradient(145deg, #800000, #a00000);
+  color: #fff;
+  padding: 38px 32px;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(128, 0, 0, 0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Glow Effect */
+.premium-accent::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -40%;
+  width: 260px;
+  height: 260px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+}
+
+/* Hover Lift */
+.premium-accent:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(128, 0, 0, 0.45);
+}
+
+/* Header */
+.accent-header {
+  margin-bottom: 22px;
+}
+
+.accent-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  margin-bottom: 8px;
+}
+
+.accent-header h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* List */
+.accent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.accent-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+
+.accent-list li:last-child {
+  border-bottom: none;
+}
+
+/* Icons */
+.accent-list i {
+  font-size: 1.4rem;
+  color: #ffd700;
+}
+
+/* Subtle Animation */
+.accent-list li:hover {
+  padding-left: 6px;
+  transition: all 0.3s ease;
+}
+/* Mobile & Tablet – show accent nicely */
+  /* =========================
+   DESKTOP ABOUT SECTION UI
+   ========================= */
+@media (min-width: 992px) {
+
+  /* Left content card feel */
+  .about-section .col-lg-7 {
+    background: #ffffff;
+    padding: 40px 45px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+  }
+
+  /* Title */
+  .about-title {
+    color: #7a0b0b;          /* deep maroon */
+    font-size: 2.4rem;
+    letter-spacing: 0.4px;
+  }
+
+  /* Divider */
+  .about-divider {
+    width: 90px;
+    height: 4px;
+    background: linear-gradient(90deg, #7a0b0b, #c1121f);
+    margin-bottom: 28px;
+  }
+
+  /* About text */
+  .about-text {
+    color: #374151;          /* dark gray */
+    font-size: 1.08rem;
+    line-height: 1.85;
+    margin-bottom: 18px;
+  }
+
+  /* Button */
+  .about-btn {
+    margin-top: 10px;
+    padding: 10px 28px;
+    font-weight: 600;
+    border-radius: 30px;
+  }
+
+  /* Right accent alignment */
+  .about-section .col-lg-5 {
+    padding-left: 35px;
+  }
+
+  /* Premium accent refinement */
+  .premium-accent {
+    padding: 42px 38px;
+    border-radius: 20px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .scroll-wrapper {
+    padding: 8px 0;
+    border-radius: 6px;
+  }
+
+  .scroll-text {
+    font-size: 1rem;
+    animation-duration: 14s;
+  }
+}
+/* ===============================
+   CAROUSEL – FULL IMAGE SOLUTION
+   =============================== */
+
+#homeCarousel {
+  width: 100%;
+  background: #000; /* letterbox background */
+}
+
+/* Desktop height */
+#homeCarousel .carousel-item {
+  height: calc(100vh - var(--nav-height));
+}
+
+/* FULL IMAGE – NO CROP */
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;  /* 🔥 FORCE full image */
+  background-color: #000;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #homeCarousel .carousel-item {
+    height: 380px;
+  }
+
+  .carousel-img {
+    object-fit: contain !important;
+  }
+}
+/* ===============================
+   FIXED HEIGHT + FULL IMAGE
+   =============================== */
+
+/* Carousel wrapper */
+#homeCarousel {
+  width: 100%;
+  background: #000; /* letterbox background */
+}
+
+/* DESKTOP HEIGHT */
+#homeCarousel .carousel-item {
+  height: 520px;            /* ✅ FIXED HEIGHT */
+}
+
+/* IMAGE – FULLY VISIBLE */
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;  /* ✅ NO CUT */
+  background-color: #000;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  #homeCarousel .carousel-item {
+    height: 360px;
+  }
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20%;
+  z-index: 10;
+  max-width: 700px;
+  text-align: left;
+}
+
+.carousel-caption h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.carousel-caption p {
+  font-size: 1.1rem;
+  color: #f1f1f1;
+}
+/* Slide description */
+.slide-desc {
+  color: #374151;            /* dark gray (professional) */
+  font-size: 1.05rem;
+  max-width: 760px;
+  line-height: 1.7;
+
+  text-shadow:
+    0 1px 4px rgba(255,255,255,0.5);
+}
+
+
+
+.scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+
+  /* 🔥 Background & border */
+  background: linear-gradient(90deg, #f8f9fa, #eef2ff);
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }

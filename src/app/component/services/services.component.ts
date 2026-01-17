@@ -3,6 +3,7 @@ import { GpContentService } from 'src/app/services/gp-content.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { COMMON_DEFAULT_FORM, CATEGORY_OPTIONS } from 'src/app/common/common-form.config';
 import { ContactInfoService } from 'src/app/services/contact-info.service';
+import { CATEGORY_LABELS } from 'src/app/models/category-labels';
 
 
 @Component({
@@ -11,12 +12,17 @@ import { ContactInfoService } from 'src/app/services/contact-info.service';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
-  contactPhone: string | null = null;
- schemes: any[] = [];
+ contactPhone: string | null = null;
+  schemes: any[] = [];
   isAdmin = false;
+  showNewCategory = false;
+newCategory = '';
 
   // ✅ use COMMON category config
- categories: string[] = [];
+
+categories = CATEGORY_OPTIONS;
+categoryLabels = CATEGORY_LABELS;
+  
 
 
   // ✅ FULL FORM = scheme fields + common fields
@@ -36,7 +42,7 @@ export class ServicesComponent implements OnInit {
   constructor(
     private gp: GpContentService,
     private auth: AuthService,
-     private contactInfo: ContactInfoService
+    private contactInfo: ContactInfoService
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +51,7 @@ export class ServicesComponent implements OnInit {
     this.auth.getAuthState().subscribe(user => {
       this.isAdmin = !!user;
     });
-      // ✅ RECEIVE PHONE
+          // ✅ RECEIVE PHONE
   this.contactInfo.phone$.subscribe(phone => {
     this.contactPhone = phone;
   });
@@ -61,33 +67,34 @@ loadSchemes() {
     }));
 
     // 🔥 BUILD CATEGORY LIST FROM EXISTING PRODUCTS
-    this.categories = Array.from(
-      new Set(
-        this.schemes
-          .map(s => s.category)
-          .filter(c => c && c.trim().length > 0)
-      )
-    );
   });
 }
-
-
-  save() {
-    if (!this.isAdmin) return;
-
-    const payload = { ...this.form };
-    delete payload.id;
-
-    if (this.form.id) {
-      this.gp.updateScheme(this.form.id, payload)
-        .then(() => this.loadSchemes());
-    } else {
-      this.gp.addScheme(payload)
-        .then(() => this.loadSchemes());
-    }
-
-    this.reset();
+onCategoryChange() {
+  this.showNewCategory = this.form.category === '__other__';
+  if (!this.showNewCategory) {
+    this.newCategory = '';
   }
+}
+
+save() {
+  if (!this.isAdmin) return;
+
+  if (this.showNewCategory && this.newCategory.trim()) {
+    this.form.category = this.newCategory.trim().toLowerCase();
+  }
+
+  const payload = { ...this.form };
+  delete payload.id;
+
+  if (this.form.id) {
+    this.gp.updateScheme(this.form.id, payload).then(() => this.loadSchemes());
+  } else {
+    this.gp.addScheme(payload).then(() => this.loadSchemes());
+  }
+
+  this.reset();
+}
+
 
   edit(scheme: any) {
     this.form = {
@@ -120,17 +127,21 @@ loadSchemes() {
     }
   }
 
-  reset() {
-    this.form = {
-      id: null,
-      name: '',
-      desc: '',
-      link: '',
-      category: 'business',
-      ...COMMON_DEFAULT_FORM
-    };
-  }
-  enquiryNow(schemeName: string) {
+reset() {
+  this.form = {
+    id: null,
+    name: '',
+    desc: '',
+    link: '',
+    category: 'other',
+    ...COMMON_DEFAULT_FORM
+  };
+
+  this.showNewCategory = false;
+  this.newCategory = '';
+}
+
+    enquiryNow(schemeName: string) {
   if (!this.contactPhone) {
     alert('Contact number not available');
     return;
@@ -146,6 +157,5 @@ loadSchemes() {
   const url = `https://wa.me/91${phone}?text=${message}`;
   window.open(url, '_blank');
 }
-
 
 }

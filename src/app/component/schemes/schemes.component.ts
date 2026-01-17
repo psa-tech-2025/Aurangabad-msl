@@ -3,6 +3,7 @@ import { GpContentService } from 'src/app/services/gp-content.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { COMMON_DEFAULT_FORM, CATEGORY_OPTIONS } from 'src/app/common/common-form.config';
 import { ContactInfoService } from 'src/app/services/contact-info.service';
+import { CATEGORY_LABELS } from 'src/app/models/category-labels';
 
 @Component({
   selector: 'app-schemes',
@@ -17,7 +18,9 @@ export class SCHEMESComponent implements OnInit {
 newCategory = '';
 
   // ✅ use COMMON category config
- categories: string[] = [];
+
+categories = CATEGORY_OPTIONS;
+categoryLabels = CATEGORY_LABELS;
 
 
   // ✅ FULL FORM = scheme fields + common fields
@@ -62,25 +65,14 @@ loadSchemes() {
     }));
 
     // 🔥 BUILD CATEGORY LIST FROM EXISTING PRODUCTS
-    this.categories = Array.from(
-      new Set(
-        this.schemes
-          .map(s => s.category)
-          .filter(c => c && c.trim().length > 0)
-      )
-    );
   });
 }
 onCategoryChange() {
-  if (this.form.category === '__other__') {
-    this.showNewCategory = true;
-    this.form.category = '';
-  } else {
-    this.showNewCategory = false;
+  this.showNewCategory = this.form.category === '__other__';
+  if (!this.showNewCategory) {
     this.newCategory = '';
   }
 }
-
 
 save() {
   if (!this.isAdmin) return;
@@ -93,11 +85,9 @@ save() {
   delete payload.id;
 
   if (this.form.id) {
-    this.gp.updateScheme(this.form.id, payload)
-      .then(() => this.loadSchemes());
+    this.gp.updateScheme(this.form.id, payload).then(() => this.loadSchemes());
   } else {
-    this.gp.addScheme(payload)
-      .then(() => this.loadSchemes());
+    this.gp.addScheme(payload).then(() => this.loadSchemes());
   }
 
   this.reset();
@@ -149,13 +139,14 @@ reset() {
   this.newCategory = '';
 }
 
-    enquiryNow(schemeName: string) {
-  if (!this.contactPhone) {
-    alert('Contact number not available');
-    return;
-  }
+  enquiryNow(schemeName: string) {
+  // ✅ Default fallback number
+  const DEFAULT_PHONE = '9766871928';
 
-  const phone = this.contactPhone.replace(/[^0-9]/g, '').slice(-10);
+  // Use contactPhone if available, otherwise fallback
+  const rawPhone = this.contactPhone || DEFAULT_PHONE;
+
+  const phone = rawPhone.replace(/[^0-9]/g, '').slice(-10);
 
   const message =
     `Thank you for contacting SA ELECTRONICS.%0A%0A` +

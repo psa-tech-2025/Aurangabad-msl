@@ -18,16 +18,12 @@
     <!-- CATEGORY -->
  <!-- CATEGORY -->
 <div class="col-md-3">
-  <select class="form-select"
-          [(ngModel)]="form.category"
-          (change)="onCategoryChange()">
+<select class="form-select" [(ngModel)]="form.category">
+  <option *ngFor="let c of categories" [value]="c">
+    {{ categoryLabels[c] }}
+  </option>
+</select>
 
-    <option *ngFor="let c of categories" [value]="c">
-      {{ c | titlecase }}
-    </option>
-
-    <option value="__other__">Other (Add New)</option>
-  </select>
 </div>
 
 <!-- NEW CATEGORY INPUT -->
@@ -49,10 +45,6 @@
   </button>
 </div>
 
-<!-- <td>
-  <span class="badge bg-primary" *ngIf="scheme.featured">Featured</span>
-  <span class="badge bg-success" *ngIf="scheme.active">Active</span>
-</td> -->
 
 <!-- ================= PUBLIC VIEW ================= -->
 <div class="container my-5">
@@ -64,8 +56,11 @@
       <div class="card h-100 shadow-sm scheme-card">
 
         <!-- IMAGE -->
-        <img *ngIf="scheme.image" [src]="scheme.image" class="card-img-top" alt="Scheme image">
-
+        <!-- <img *ngIf="scheme.image" [src]="scheme.image" class="card-img-top" alt="Scheme image"> -->
+        <img
+  [src]="scheme.image || scheme.images?.[0] || 'assets/no-image.png'"
+  class="card-img-top"
+  alt="Product image">
         <div class="card-body d-flex flex-column">
 
           <!-- TITLE + FEATURED -->

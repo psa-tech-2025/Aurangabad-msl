@@ -5,6 +5,7 @@ import { GpContentService } from 'src/app/services/gp-content.service';
 import { HomeNoticeService } from 'src/app/services/home-notice.service';
 import { CATEGORY_LABELS } from 'src/app/models/category-labels';
 import { ContactInfoService } from 'src/app/services/contact-info.service';
+import { CATEGORY_OPTIONS } from 'src/app/common/common-form.config';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,10 @@ export class HomeComponent implements OnInit {
    services: any[] = [];
   filteredServices: any[] = [];
   searchText = '';
-  selectedCategory = 'all';
 
-  categoryLabels = CATEGORY_LABELS;
-  categories: string[] = [];
+categories = CATEGORY_OPTIONS;
+categoryLabels = CATEGORY_LABELS;
+selectedCategory = 'all';
 notices: any[] = [];
   announcements: any[] = [];
   images: any[] = [];
