@@ -25,11 +25,13 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit(): void {
 this.gp.getGallery().subscribe(data => {
-    this.images = data.map((x: any) => ({
-      id: x._id,
-      url: x.url,
-      description: x.description
-    }));
+this.images = data.map((x: any, i: number) => ({
+  id: x._id,
+  url: x.url,
+  description: x.description,
+  sortOrder: x.sortOrder ?? i * 10
+}));
+
   });
 
   this.auth.getAuthState().subscribe(user => {
@@ -37,6 +39,38 @@ this.gp.getGallery().subscribe(data => {
   });
 
   }
+  getSortOrder(ref: any, position: 'before' | 'after') {
+  const index = this.images.findIndex(i => i.id === ref.id);
+
+  const prev = this.images[index - 1]?.sortOrder ?? ref.sortOrder - 10;
+  const next = this.images[index + 1]?.sortOrder ?? ref.sortOrder + 10;
+
+  return position === 'before'
+    ? (prev + ref.sortOrder) / 2
+    : (ref.sortOrder + next) / 2;
+}
+async saveWithPosition(position: 'before' | 'after') {
+  if (!this.isAdmin || !this.editId) return;
+
+  const refImage = this.images.find(i => i.id === this.editId);
+  if (!refImage) return;
+
+  let url = '';
+
+  if (this.selectedFile) {
+    url = await this.gp.uploadImage(this.selectedFile);
+  }
+
+  await this.gp.addGallery({
+    url: url || refImage.url,
+    description: this.description,
+    sortOrder: this.getSortOrder(refImage, position)
+  });
+
+  this.reload();
+}
+
+
   onFileSelect(event: any) {
     this.selectedFile = event.target.files[0];
   }

@@ -40,9 +40,29 @@
   <!-- 🔥 COMMON OPTIONAL FIELDS -->
   <app-common-fields [model]="form"></app-common-fields>
 
-  <button class="btn btn-danger mt-3" (click)="save()">
+<div class="d-flex gap-2 mt-3">
+  <!-- Normal Save (unchanged behavior) -->
+  <button class="btn btn-danger" (click)="save()">
     {{ form.id ? 'Update' : 'Add' }}
   </button>
+
+  <!-- Save AFTER current scheme -->
+  <button
+    class="btn btn-outline-success"
+    *ngIf="form.id"
+    (click)="saveWithPosition('after')">
+    Save & Next
+  </button>
+
+  <!-- Save BEFORE current scheme -->
+  <button
+    class="btn btn-outline-warning"
+    *ngIf="form.id"
+    (click)="saveWithPosition('before')">
+    Save & Prev
+  </button>
+</div>
+
 </div>
 
 

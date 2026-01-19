@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  //  apiUrl: 'http://localhost:3000/api',
+   //apiUrl: 'http://localhost:3000/api',
   apiUrl: 'http://192.168.126.130:3001/api',
   projectId: 'SA-Electronics-100',
       firebase: {

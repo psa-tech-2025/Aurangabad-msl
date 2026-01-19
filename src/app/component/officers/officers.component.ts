@@ -43,9 +43,11 @@ form = {
     this.gp.getOfficers().subscribe(data => {
 this.officers = data.map((o: any, i: number) => ({
   ...o,
-  id: o._id,          // 👈 map Mongo _id to id
+  id: o._id,
+  sortOrder: o.sortOrder ?? i * 10,
   idDisplay: i + 1
 }));
+
 
     });
 
@@ -54,6 +56,39 @@ this.officers = data.map((o: any, i: number) => ({
       this.isAdmin = !!user;
     });
   }
+  getSortOrder(ref: any, position: 'before' | 'after') {
+  const index = this.officers.findIndex(o => o.id === ref.id);
+
+  const prev = this.officers[index - 1]?.sortOrder ?? ref.sortOrder - 10;
+  const next = this.officers[index + 1]?.sortOrder ?? ref.sortOrder + 10;
+
+  return position === 'before'
+    ? (prev + ref.sortOrder) / 2
+    : (ref.sortOrder + next) / 2;
+}
+saveWithPosition(position: 'before' | 'after') {
+  if (!this.isAdmin || !this.form.id) return;
+
+  const refOfficer = this.officers.find(o => o.id === this.form.id);
+  if (!refOfficer) return;
+
+  const payload = {
+    name: this.form.name,
+    post: this.form.post,
+    phone: this.form.phone,
+    image: this.form.image,
+    video: this.form.video,
+    pdf: this.form.pdf,
+    socialLinks: this.form.socialLinks,
+    sortOrder: this.getSortOrder(refOfficer, position)
+  };
+
+  this.gp.addOfficer(payload)
+    .then(() => this.reload());
+
+  this.reset();
+}
+
 
  save() {
   if (!this.isAdmin) {
@@ -129,11 +164,13 @@ reset() {
 
   reload() {
   this.gp.getOfficers().subscribe(data => {
-    this.officers = data.map((o: any, i: number) => ({
-      ...o,
-      id: o._id,
-      idDisplay: i + 1
-    }));
+this.officers = data.map((o: any, i: number) => ({
+  ...o,
+  id: o._id,
+  sortOrder: o.sortOrder ?? i * 10,
+  idDisplay: i + 1
+}));
+
   });
 }
 onImageSelect(e: any) {

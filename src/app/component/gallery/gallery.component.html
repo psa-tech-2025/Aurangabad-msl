@@ -8,10 +8,29 @@
     <input type="text" class="form-control mb-2"
       placeholder="Image description"
       [(ngModel)]="description">
+<div class="d-flex gap-2">
+  <!-- Normal Save -->
+  <button class="btn btn-danger" (click)="save()">
+    {{ editId ? 'Update' : 'Add' }}
+  </button>
 
-    <button class="btn btn-danger" (click)="save()">
-      {{ editId ? 'Update' : 'Add' }}
-    </button>
+  <!-- Save AFTER current image -->
+  <button
+    class="btn btn-outline-success"
+    *ngIf="editId"
+    (click)="saveWithPosition('after')">
+    Save & Next
+  </button>
+
+  <!-- Save BEFORE current image -->
+  <button
+    class="btn btn-outline-warning"
+    *ngIf="editId"
+    (click)="saveWithPosition('before')">
+    Save & Prev
+  </button>
+</div>
+
   </div>
 
   <!-- 🖼️ PUBLIC GALLERY -->

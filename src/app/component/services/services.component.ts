@@ -56,17 +56,16 @@ categoryLabels = CATEGORY_LABELS;
     this.contactPhone = phone;
   });
   }
-
 loadSchemes() {
   this.gp.getSchemes().subscribe((data: any[]) => {
-
-    this.schemes = data.map((s: any) => ({
-      ...s,
-      id: s._id,
-      category: s.category || 'other'
-    }));
-
-    // 🔥 BUILD CATEGORY LIST FROM EXISTING PRODUCTS
+    this.schemes = data
+      .map((s: any, i: number) => ({
+        ...s,
+        id: s._id,
+        category: s.category || 'other',
+        sortOrder: s.sortOrder ?? i * 10   // 🔥 fallback
+      }))
+      .sort((a, b) => a.sortOrder - b.sortOrder);
   });
 }
 onCategoryChange() {
@@ -117,6 +116,37 @@ save() {
       featured: scheme.featured ?? false
     };
   }
+  
+
+getSortOrder(ref: any, position: 'before' | 'after') {
+  const index = this.schemes.findIndex(s => s.id === ref.id);
+
+  const prev = this.schemes[index - 1]?.sortOrder ?? ref.sortOrder - 10;
+  const next = this.schemes[index + 1]?.sortOrder ?? ref.sortOrder + 10;
+
+  return position === 'before'
+    ? (prev + ref.sortOrder) / 2
+    : (ref.sortOrder + next) / 2;
+}
+saveWithPosition(position: 'before' | 'after') {
+  if (!this.isAdmin || !this.form.id) return;
+
+  const refScheme = this.schemes.find(s => s.id === this.form.id);
+  if (!refScheme) return;
+
+  const payload: any = {
+    ...this.form,
+    sortOrder: this.getSortOrder(refScheme, position) // ✅ real ordering
+  };
+
+  delete payload.id;
+
+  this.gp.addScheme(payload).then(() => {
+    this.loadSchemes();
+    this.reset();
+  });
+}
+
 
   delete(id: string) {
     if (!this.isAdmin) return;
