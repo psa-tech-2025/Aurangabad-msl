@@ -256,9 +256,13 @@
       <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let scheme of filteredServices | slice:0:6">
 
         <div class="card h-100 shadow-sm scheme-card" >
-          <div [routerLink]="['/service', scheme.id]">
+          <div  [routerLink]="['/product', scheme.id]">
           <div class="image-box">
-            <img *ngIf="scheme.image" [src]="scheme.image" alt="Service" class="product-img">
+            <img
+  [src]="scheme.image || scheme.images?.[0] || 'assets/no-image.png'"
+  class="product-img"
+  alt="Service">
+
           </div>
 
 

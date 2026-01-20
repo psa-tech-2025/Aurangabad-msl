@@ -104,24 +104,24 @@ notices: any[] = [];
         // ✅ LOAD SERVICES / PRODUCTS
 this.gp.getSchemes().subscribe(data => {
 
-  this.services = data.map((s: any) => ({
-    ...s,
-    id: s._id,
-    category: s.category || 'other'
-  }));
+  this.services = data
+    .map((s: any, i: number) => ({
+      ...s,
+      id: s._id,
+      category: s.category || 'other',
+      sortOrder: s.sortOrder ?? i * 10
+    }))
+    .filter(s => s.active !== false) // ✅ ONLY ACTIVE
+    .sort((a, b) => a.sortOrder - b.sortOrder);
 
-  // ✅ SHOW ALL INITIALLY
   this.filteredServices = [...this.services];
 
-  // ✅ DYNAMIC CATEGORY LIST (from uploaded data)
-  this.categories = Array.from(
-    new Set(
-      this.services
-        .map(s => s.category)
-        .filter(c => c && c.trim().length > 0)
-    )
+  // ✅ Keep config categories but show only used ones
+  this.categories = this.preferredCategoryOrder.filter(cat =>
+    this.services.some(s => s.category === cat)
   );
 });
+
 
 
 
@@ -132,21 +132,18 @@ applyFilter() {
   const search = this.searchText.toLowerCase().trim();
 
   this.filteredServices = this.services.filter(s => {
-
     const matchCategory =
       this.selectedCategory === 'all' ||
       s.category === this.selectedCategory;
 
     const matchSearch =
       !search ||
-      (s.name && s.name.toLowerCase().includes(search)) ||
-      (s.desc && s.desc.toLowerCase().includes(search));
+      s.name?.toLowerCase().includes(search) ||
+      s.desc?.toLowerCase().includes(search);
 
     return matchCategory && matchSearch;
   });
 }
-
-
   // READ MORE
   goToServices() {
     this.router.navigate(['/services']);
