@@ -18,113 +18,132 @@ export class GalleryComponent implements OnInit {
   editId: string | null = null;
   selectedImage: any = null;
 
+  // ✅ NEW: social / media link input
+  socialLinkInput = '';
+
   constructor(
     private gp: GpContentService,
     private auth: AuthService
   ) {}
 
-  ngOnInit(): void {
-this.gp.getGallery().subscribe(data => {
-this.images = data.map((x: any, i: number) => ({
-  id: x._id,
-  url: x.url,
-  description: x.description,
-  sortOrder: x.sortOrder ?? i * 10
-}));
-
+ngOnInit(): void {
+  this.gp.getGallery().subscribe(data => {
+    this.images = data.map((x: any, i: number) => ({
+      id: x._id,
+      url: x.url,
+      description: x.description,
+      sortOrder: x.sortOrder ?? i * 10,
+      socialLinks: x.socialLinks || [] // ✅ REQUIRED
+    }));
   });
 
   this.auth.getAuthState().subscribe(user => {
     this.isAdmin = !!user;
   });
+}
 
+
+  // ✅ NEW: auto detect link type
+  detectLinkType(url: string): string {
+    if (!url) return 'website';
+    if (url.includes('facebook.com')) return 'facebook';
+    if (url.includes('linkedin.com')) return 'linkedin';
+    if (url.includes('instagram.com')) return 'instagram';
+    if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
+    return 'website';
   }
+
   getSortOrder(ref: any, position: 'before' | 'after') {
-  const index = this.images.findIndex(i => i.id === ref.id);
+    const index = this.images.findIndex(i => i.id === ref.id);
+    const prev = this.images[index - 1]?.sortOrder ?? ref.sortOrder - 10;
+    const next = this.images[index + 1]?.sortOrder ?? ref.sortOrder + 10;
 
-  const prev = this.images[index - 1]?.sortOrder ?? ref.sortOrder - 10;
-  const next = this.images[index + 1]?.sortOrder ?? ref.sortOrder + 10;
-
-  return position === 'before'
-    ? (prev + ref.sortOrder) / 2
-    : (ref.sortOrder + next) / 2;
-}
-async saveWithPosition(position: 'before' | 'after') {
-  if (!this.isAdmin || !this.editId) return;
-
-  const refImage = this.images.find(i => i.id === this.editId);
-  if (!refImage) return;
-
-  let url = '';
-
-  if (this.selectedFile) {
-    url = await this.gp.uploadImage(this.selectedFile);
+    return position === 'before'
+      ? (prev + ref.sortOrder) / 2
+      : (ref.sortOrder + next) / 2;
   }
 
-  await this.gp.addGallery({
-    url: url || refImage.url,
-    description: this.description,
-    sortOrder: this.getSortOrder(refImage, position)
-  });
+  async saveWithPosition(position: 'before' | 'after') {
+    if (!this.isAdmin || !this.editId) return;
 
-  this.reload();
-}
+    const refImage = this.images.find(i => i.id === this.editId);
+    if (!refImage) return;
 
+    let url = '';
+    if (this.selectedFile) {
+      url = await this.gp.uploadImage(this.selectedFile);
+    }
+
+    await this.gp.addGallery({
+      url: url || refImage.url,
+      description: this.description,
+      sortOrder: this.getSortOrder(refImage, position)
+    });
+
+    this.reload();
+  }
 
   onFileSelect(event: any) {
     this.selectedFile = event.target.files[0];
   }
 
   async save() {
-  if (!this.isAdmin) return;
+    if (!this.isAdmin) return;
 
-  // 🚫 Limit: only 10 images allowed (for ADD only)
-  if (!this.editId && this.images.length >= 10) {
-    alert('Maximum 10 images allowed in gallery.');
-    return;
+    // 🚫 Limit: only 10 images allowed
+    if (!this.editId && this.images.length >= 10) {
+      alert('Maximum 10 images allowed in gallery.');
+      return;
+    }
+
+    let url = '';
+    if (this.selectedFile) {
+      url = await this.gp.uploadImage(this.selectedFile);
+    }
+
+    // ✅ NEW: social link payload
+    const socialLinks = this.socialLinkInput
+      ? [{
+          url: this.socialLinkInput,
+          type: this.detectLinkType(this.socialLinkInput)
+        }]
+      : [];
+
+    if (this.editId) {
+      await this.gp.updateGallery(this.editId, {
+        description: this.description,
+        ...(url && { url }),
+        socialLinks // ✅ NEW
+      });
+    } else {
+      await this.gp.addGallery({
+        url,
+        description: this.description,
+        socialLinks // ✅ NEW
+      });
+    }
+
+    this.reload();
+    this.reset();
   }
-
-  let url = '';
-
-  if (this.selectedFile) {
-    url = await this.gp.uploadImage(this.selectedFile);
-  }
-
-  if (this.editId) {
-    // ✏️ UPDATE (no limit check)
-    await this.gp.updateGallery(this.editId, {
-      description: this.description,
-      ...(url && { url })
-    });
-  } else {
-    // ➕ ADD
- await this.gp.addGallery({
-  url,
-  description: this.description
-});
-
-this.reload();
-
-  }
-
-  this.reset();
-}
 
 reload() {
   this.gp.getGallery().subscribe(data => {
     this.images = data.map((x: any) => ({
       id: x._id,
       url: x.url,
-      description: x.description
+      description: x.description,
+      socialLinks: x.socialLinks || [] // ✅ REQUIRED
     }));
   });
-  this.reset();
 }
+
 
   edit(item: any) {
     if (!this.isAdmin) return;
     this.editId = item.id;
     this.description = item.description;
+    this.socialLinkInput = item.socialLinks?.[0]?.url || ''; // ✅ NEW
   }
 
   delete(id: string) {
@@ -138,14 +157,16 @@ reload() {
     this.editId = null;
     this.description = '';
     this.selectedFile = undefined as any;
+    this.socialLinkInput = ''; // ✅ NEW
   }
-  openModal(image: any) {
-  this.selectedImage = image;
-  document.body.style.overflow = 'hidden'; // disable background scroll
-}
 
-closeModal() {
-  this.selectedImage = null;
-  document.body.style.overflow = 'auto';
-}
+  openModal(image: any) {
+    this.selectedImage = image;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModal() {
+    this.selectedImage = null;
+    document.body.style.overflow = 'auto';
+  }
 }

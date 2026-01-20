@@ -173,7 +173,7 @@ reset() {
 
   enquiryNow(schemeName: string) {
   // ✅ Default fallback number
-  const DEFAULT_PHONE = '9766871928';
+  const DEFAULT_PHONE = '9730918695';
 
   // Use contactPhone if available, otherwise fallback
   const rawPhone = this.contactPhone || DEFAULT_PHONE;

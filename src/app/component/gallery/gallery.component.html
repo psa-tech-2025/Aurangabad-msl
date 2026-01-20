@@ -1,91 +1,151 @@
 <div class="container my-5">
 
   <!-- 🔐 ADMIN PANEL (hidden from public) -->
-  <div *ngIf="isAdmin" class="mb-4 border p-3 rounded bg-light">
-    <h5>Admin Gallery Manager</h5>
+<!-- 🔐 ADMIN PANEL -->
+<div *ngIf="isAdmin" class="mb-4 border p-3 rounded bg-light">
+  <h5>Admin Gallery Manager</h5>
 
-    <input type="file" class="form-control mb-2" (change)="onFileSelect($event)">
-    <input type="text" class="form-control mb-2"
-      placeholder="Image description"
-      [(ngModel)]="description">
-<div class="d-flex gap-2">
-  <!-- Normal Save -->
-  <button class="btn btn-danger" (click)="save()">
-    {{ editId ? 'Update' : 'Add' }}
-  </button>
+  <input type="file" class="form-control mb-2" (change)="onFileSelect($event)">
 
-  <!-- Save AFTER current image -->
-  <button
-    class="btn btn-outline-success"
-    *ngIf="editId"
-    (click)="saveWithPosition('after')">
-    Save & Next
-  </button>
+  <input
+    type="text"
+    class="form-control mb-2"
+    placeholder="Image description"
+    [(ngModel)]="description"
+  >
 
-  <!-- Save BEFORE current image -->
-  <button
-    class="btn btn-outline-warning"
-    *ngIf="editId"
-    (click)="saveWithPosition('before')">
-    Save & Prev
-  </button>
+  <!-- ✅ NEW: single link input -->
+  <input
+    type="text"
+    class="form-control mb-2"
+    placeholder="Paste image / Facebook / YouTube / LinkedIn link"
+    [(ngModel)]="socialLinkInput"
+  >
+
+  <div class="d-flex gap-2">
+    <button class="btn btn-danger" (click)="save()">
+      {{ editId ? 'Update' : 'Add' }}
+    </button>
+
+    <button
+      class="btn btn-outline-success"
+      *ngIf="editId"
+      (click)="saveWithPosition('after')">
+      Save & Next
+    </button>
+
+    <button
+      class="btn btn-outline-warning"
+      *ngIf="editId"
+      (click)="saveWithPosition('before')">
+      Save & Prev
+    </button>
+  </div>
 </div>
 
-  </div>
 
   <!-- 🖼️ PUBLIC GALLERY -->
   <h2 class="text-center mb-4" style="color: #800000;">
-SA ELECTRONICS GALLERY
+दर्जेदार मसाले GALLERY
   </h2>
 
-  <div class="row g-4">
-  <div class="col-12 col-sm-6 col-md-4" *ngFor="let image of images">
-  <div class="card shadow-sm h-100 position-relative">
+<div class="row g-4">
+  <div
+    class="col-12 col-sm-6 col-md-4"
+    *ngFor="let image of images"
+  >
+    <div class="card shadow-sm h-100 position-relative">
 
-    <!-- Image -->
-    <img
-      [src]="image.url"
-      class="card-img-top gallery-img"
-      (click)="openModal(image)"
-    />
+      <!-- Image -->
+      <img
+        [src]="image.url"
+        class="card-img-top gallery-img"
+        (click)="openModal(image)"
+      />
 
-    <!-- View Icon (Public) -->
-    <button
-      class="btn btn-dark view-icon"
-      (click)="openModal(image)"
-      title="View Image"
-    >
-      <i class="fa fa-eye"></i>
-    </button>
+      <!-- View Icon -->
+      <button
+        class="btn btn-dark view-icon"
+        (click)="openModal(image)"
+        title="View Image"
+      >
+        <i class="fa fa-eye"></i>
+      </button>
 
-    <div class="card-body">
-      <p class="card-text text-center">{{ image.description }}</p>
+      <!-- ✅ CARD BODY MUST BE INSIDE ngFor -->
+      <div class="card-body">
 
-      <!-- ADMIN ACTIONS -->
-      <div *ngIf="isAdmin" class="text-center">
-        <button class="btn btn-sm btn-warning me-1" (click)="edit(image)">
-          Edit
-        </button>
-        <button class="btn btn-sm btn-danger" (click)="delete(image.id)">
-          Delete
-        </button>
+        <p class="card-text text-center">
+          {{ image.description }}
+        </p>
+
+        <!-- ✅ SOCIAL LINK (PUBLIC) -->
+    <div class="text-center mt-2" *ngIf="image.socialLinks?.length">
+  <a
+    [href]="image.socialLinks[0].url"
+    target="_blank"
+  >
+    <i
+      class="fa"
+      [ngClass]="{
+        'fa-youtube': image.socialLinks[0].url.includes('youtube') || image.socialLinks[0].url.includes('youtu.be'),
+        'fa-facebook': image.socialLinks[0].url.includes('facebook'),
+        'fa-linkedin': image.socialLinks[0].url.includes('linkedin'),
+        'fa-instagram': image.socialLinks[0].url.includes('instagram'),
+        'fa-globe': !(
+          image.socialLinks[0].url.includes('youtube') ||
+          image.socialLinks[0].url.includes('facebook') ||
+          image.socialLinks[0].url.includes('linkedin') ||
+          image.socialLinks[0].url.includes('instagram')
+        )
+      }"
+      style="font-size: 20px;"
+    ></i>
+  </a>
+</div>
+    <div
+          class="text-center mt-2"
+          *ngIf="image.socialLinks?.length"
+        >
+          <a
+            [href]="image.socialLinks[0].url"
+            target="_blank"
+          >
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-facebook': image.socialLinks[0].type === 'facebook',
+                'fa-linkedin': image.socialLinks[0].type === 'linkedin',
+                'fa-instagram': image.socialLinks[0].type === 'instagram',
+                'fa-youtube': image.socialLinks[0].type === 'youtube',
+                'fa-globe': image.socialLinks[0].type === 'website'
+              }"
+              style="font-size: 20px;"
+            ></i>
+          </a>
+        </div>
+
+        <!-- ADMIN ACTIONS -->
+        <div *ngIf="isAdmin" class="text-center mt-2">
+          <button
+            class="btn btn-sm btn-warning me-1"
+            (click)="edit(image)"
+          >
+            Edit
+          </button>
+
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="delete(image.id)"
+          >
+            Delete
+          </button>
+        </div>
+
       </div>
     </div>
-
   </div>
 </div>
-<!-- IMAGE VIEW MODAL -->
-<div class="image-modal" *ngIf="selectedImage">
-  <span class="close-btn" (click)="closeModal()">&times;</span>
 
-  <img
-    [src]="selectedImage.url"
-    class="modal-img"
-  />
-
-  <p class="modal-desc">{{ selectedImage.description }}</p>
 </div>
 
-
-  </div>
-</div>
